@@ -42,7 +42,7 @@ dependencies {
     // Kotlin
     compile "org.jetbrains.anko:anko-sdk15:0.9"
     compile "org.jetbrains.anko:anko-appcompat-v7:0.9"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.4"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.5-2"
 
     // Data
     compile 'com.squareup.retrofit2:retrofit:2.1.0'

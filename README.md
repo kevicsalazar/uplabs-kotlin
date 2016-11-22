@@ -19,8 +19,7 @@ Libraries
  * OkHttp - http://square.github.io/okhttp
  * Retrofit - http://square.github.io/retrofit
  * Gson - https://github.com/google/gson
- * Glide - https://github.com/bumptech/glide
+ * Picasso - https://github.com/square/picasso
  * RxJava - https://github.com/ReactiveX/RxJava
  * RxAndroid - https://github.com/ReactiveX/RxAndroid
  * RxAndroid - https://github.com/ReactiveX/RxKotlin
- * Picasso - https://github.com/ReactiveX/RxAndroid

@@ -7,7 +7,7 @@ import com.kevicsalazar.uplabs.ui.mvp.model.Post
 import android.view.LayoutInflater
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.base.ext.loadUrl
-import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import com.kevicsalazar.uplabs.utils.CropCircleTransformation
 import kotlinx.android.synthetic.main.item_post.view.*
 
 

@@ -14,7 +14,8 @@
             android:id="@+id/ivPreview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="200dp" />
+            android:minHeight="200dp"
+            android:contentDescription="@string/app_name" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,13 +27,15 @@
                 android:id="@+id/ivAvatar"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/app_name" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
+                android:layout_height="48dp"
                 android:layout_toEndOf="@+id/ivAvatar"
                 android:layout_toStartOf="@+id/layoutEnd"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
@@ -56,9 +59,10 @@
             <FrameLayout
                 android:id="@+id/layoutEnd"
                 android:layout_width="28dp"
-                android:layout_height="32dp"
+                android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="8dp">
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical">
 
 
             </FrameLayout>

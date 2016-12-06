@@ -17,6 +17,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
+        title = ""
 
         val pagerAdapter = SimplePagerAdapter(supportFragmentManager)
         pagerAdapter.addFragment(PageFragment().withArguments("type" to "material"), "MATERIAL")

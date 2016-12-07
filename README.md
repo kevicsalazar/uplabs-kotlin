@@ -1,7 +1,7 @@
 # UppLabs App
 Kotlin Sample Project for Android
 
-This is an example of Android using Kotlin, MVP pattern and others libraries.
+This is an example of Android using Kotlin, MVP pattern and other libraries.
 
 <img src="./screenshot1.png" height="640" />
 <img src="./screenshot2.png" height="640" />

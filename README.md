@@ -23,4 +23,4 @@ Libraries
  * Picasso - https://github.com/square/picasso
  * RxJava - https://github.com/ReactiveX/RxJava
  * RxAndroid - https://github.com/ReactiveX/RxAndroid
- * RxAndroid - https://github.com/ReactiveX/RxKotlin
+ * RxKotlin - https://github.com/ReactiveX/RxKotlin

@@ -1,12 +1,12 @@
-package com.kevicsalazar.uplabs.ui.adapters
+package com.kevicsalazar.uplabs.presentation.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.kevicsalazar.uplabs.ui.mvp.model.Post
+import com.kevicsalazar.uplabs.domain.model.Post
 import android.view.LayoutInflater
 import com.kevicsalazar.uplabs.R
-import com.kevicsalazar.uplabs.base.ext.loadUrl
+import com.kevicsalazar.uplabs.utils.extensions.loadUrl
 import com.kevicsalazar.uplabs.utils.CropCircleTransformation
 import kotlinx.android.synthetic.main.item_post.view.*
 
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_post.view.*
  * Created by Kevin.
  */
 
-class PostRecyclerAdapter() : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
+class PostRecyclerAdapter : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
 
     private var posts = mutableListOf<Post>()
 

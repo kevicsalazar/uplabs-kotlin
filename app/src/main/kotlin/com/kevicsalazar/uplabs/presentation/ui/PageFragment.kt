@@ -1,22 +1,22 @@
-package com.kevicsalazar.uplabs.ui.mvp.views
+package com.kevicsalazar.uplabs.presentation.ui
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.kevicsalazar.uplabs.R
-import com.kevicsalazar.uplabs.base.BaseFragment
-import com.kevicsalazar.uplabs.base.BasePresenter
-import com.kevicsalazar.uplabs.ui.ActivityComponent
-import com.kevicsalazar.uplabs.ui.adapters.PostRecyclerAdapter
-import com.kevicsalazar.uplabs.ui.mvp.model.Post
-import com.kevicsalazar.uplabs.ui.mvp.presenters.PagePresenter
+import com.kevicsalazar.uplabs.presentation.BaseFragment
+import com.kevicsalazar.uplabs.presentation.BasePresenter
+import com.kevicsalazar.uplabs.presentation.ActivityComponent
+import com.kevicsalazar.uplabs.presentation.adapters.PostRecyclerAdapter
+import com.kevicsalazar.uplabs.domain.model.Post
+import com.kevicsalazar.uplabs.presentation.presenters.PagePresenter
 import kotlinx.android.synthetic.main.fragment_page.*
 import javax.inject.Inject
 
 /**
  * Created by Kevin.
  */
-class PageFragment : BaseFragment(), PagePresenter.UI {
+class PageFragment : BaseFragment(), PagePresenter.View {
 
     @Inject lateinit var mPresenter: PagePresenter
 
@@ -55,7 +55,7 @@ class PageFragment : BaseFragment(), PagePresenter.UI {
 
     }
 
-    override fun showMessage(message: String) {
+    override fun showMessage(title: String, message: String) {
 
     }
 

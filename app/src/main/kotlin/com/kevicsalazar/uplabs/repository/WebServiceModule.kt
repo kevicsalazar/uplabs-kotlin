@@ -1,9 +1,9 @@
-package com.kevicsalazar.uplabs.api
+package com.kevicsalazar.uplabs.repository
 
 import com.kevicsalazar.uplabs.BuildConfig
-import com.kevicsalazar.uplabs.api.ws.WebServiceIOSPosts
-import com.kevicsalazar.uplabs.api.ws.WebServiceMaterialPosts
-import com.kevicsalazar.uplabs.base.scopes.PerApp
+import com.kevicsalazar.uplabs.repository.ws.WebServiceIOSPosts
+import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
+import com.kevicsalazar.uplabs.PerApp
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -38,7 +38,7 @@ class WebServiceModule {
                 .addHeader("Accept-Charset", "utf-8")
                 .addHeader("Accept", "application/json")
                 .build())
-    }.build()
+    }.build()!!
 
     @Provides @PerApp @Named("material") fun provideMaterialRetrofit(client: OkHttpClient) = Retrofit.Builder()
             .baseUrl("https://material.uplabs.com")

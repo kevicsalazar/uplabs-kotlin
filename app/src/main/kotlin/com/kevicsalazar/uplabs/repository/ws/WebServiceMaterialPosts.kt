@@ -1,7 +1,7 @@
-package com.kevicsalazar.uplabs.api.ws
+package com.kevicsalazar.uplabs.repository.ws
 
-import com.kevicsalazar.uplabs.base.scopes.PerApp
-import com.kevicsalazar.uplabs.ui.mvp.model.Post
+import com.kevicsalazar.uplabs.PerApp
+import com.kevicsalazar.uplabs.domain.model.Post
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -14,7 +14,7 @@ import javax.inject.Inject
  * @link kevicsalazar.com
  */
 @PerApp
-class WebServiceIOSPosts @Inject constructor(val service: Service) {
+class WebServiceMaterialPosts @Inject constructor(val service: Service) {
 
     fun getPosts(): Observable<List<Post>> {
         return service.getPosts("1")

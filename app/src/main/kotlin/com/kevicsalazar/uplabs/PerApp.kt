@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.base.scopes
+package com.kevicsalazar.uplabs
 
 import javax.inject.Scope
 
@@ -6,7 +6,6 @@ import javax.inject.Scope
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
-
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class PerActivity
+annotation class PerApp

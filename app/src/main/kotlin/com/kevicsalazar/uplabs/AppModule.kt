@@ -1,7 +1,7 @@
 package com.kevicsalazar.uplabs
 
 import android.content.Context
-import com.kevicsalazar.uplabs.base.scopes.PerApp
+import com.kevicsalazar.uplabs.PerApp
 import dagger.Module
 import dagger.Provides
 

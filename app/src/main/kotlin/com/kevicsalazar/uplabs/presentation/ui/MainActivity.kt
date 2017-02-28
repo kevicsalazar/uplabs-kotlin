@@ -1,12 +1,12 @@
-package com.kevicsalazar.uplabs.ui.mvp.views
+package com.kevicsalazar.uplabs.presentation.ui
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
-import com.kevicsalazar.uplabs.base.BaseActivity
-import com.kevicsalazar.uplabs.base.BasePresenter
-import com.kevicsalazar.uplabs.ui.ActivityComponent
+import com.kevicsalazar.uplabs.presentation.BaseActivity
+import com.kevicsalazar.uplabs.presentation.BasePresenter
+import com.kevicsalazar.uplabs.presentation.ActivityComponent
 import com.kevicsalazar.uplabs.utils.SimplePagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.browse

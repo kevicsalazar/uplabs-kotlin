@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.ui.mvp.model
+package com.kevicsalazar.uplabs.domain.model
 
 import com.google.gson.annotations.SerializedName
 

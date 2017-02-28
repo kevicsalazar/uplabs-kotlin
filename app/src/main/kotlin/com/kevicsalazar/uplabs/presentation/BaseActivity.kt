@@ -1,9 +1,9 @@
-package com.kevicsalazar.uplabs.base
+package com.kevicsalazar.uplabs.presentation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
-import com.kevicsalazar.uplabs.ui.ActivityComponent
+import com.kevicsalazar.uplabs.presentation.ActivityComponent
 
 /**
  * @author Kevin Salazar

@@ -1,11 +1,11 @@
-package com.kevicsalazar.uplabs.ui
+package com.kevicsalazar.uplabs.presentation
 
 import android.support.v4.app.FragmentActivity
 import com.kevicsalazar.uplabs.App
 import com.kevicsalazar.uplabs.AppComponent
-import com.kevicsalazar.uplabs.base.scopes.PerActivity
-import com.kevicsalazar.uplabs.ui.mvp.views.MainActivity
-import com.kevicsalazar.uplabs.ui.mvp.views.PageFragment
+import com.kevicsalazar.uplabs.presentation.PerActivity
+import com.kevicsalazar.uplabs.presentation.ui.MainActivity
+import com.kevicsalazar.uplabs.presentation.ui.PageFragment
 import dagger.Component
 
 /**

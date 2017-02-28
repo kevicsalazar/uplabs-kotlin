@@ -1,11 +1,11 @@
-package com.kevicsalazar.uplabs.base
+package com.kevicsalazar.uplabs.presentation
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kevicsalazar.uplabs.ui.ActivityComponent
+import com.kevicsalazar.uplabs.presentation.ActivityComponent
 
 /**
  * Created by Kevin Salazar

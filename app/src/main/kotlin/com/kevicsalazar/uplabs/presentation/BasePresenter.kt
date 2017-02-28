@@ -1,18 +1,16 @@
-package com.kevicsalazar.uplabs.base
+package com.kevicsalazar.uplabs.presentation
 
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import java.io.IOException
 
 /**
  * Created by Kevin Salazar
  */
-abstract class BasePresenter<T : BasePresenter.BaseUI> {
+abstract class BasePresenter<T : BasePresenter.BaseView> {
 
-    protected var ui: T? = null
+    protected var view: T? = null
 
     fun with(v: T): BasePresenter<T> {
-        ui = v
+        view = v
         return this
     }
 
@@ -42,30 +40,23 @@ abstract class BasePresenter<T : BasePresenter.BaseUI> {
 
      * @param error is an error or exception
      */
-    fun <E> onError(error: E) {
-        ui?.hideProgress()
-        if (error is Throwable) {
-            error.printStackTrace()
-            if (error is IOException) {
-                ui?.showMessage("No se ha podido conectar con el servidor. Comprueba tu conexión a Internet y vuelve a intentarlo.")
-            } else {
-                ui?.showMessage("Ha ocurrido un error")
-            }
-        } else if (error is Int) {
-            when (error) {
-                0 -> {
-                }
-            }
+    fun onError(error: Throwable) {
+        view?.hideProgress()
+        error.printStackTrace()
+        if (error is IOException) {
+            view?.showMessage("Error", "No hay internet")
+        } else {
+            view?.showMessage("Error", "Ha ocurrido un error")
         }
     }
 
-    interface BaseUI {
+    interface BaseView {
 
         fun showProgress()
 
         fun hideProgress()
 
-        fun showMessage(message: String)
+        fun showMessage(title: String, message: String)
 
     }
 

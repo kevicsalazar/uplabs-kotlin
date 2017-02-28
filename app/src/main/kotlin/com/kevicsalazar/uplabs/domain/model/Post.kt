@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.ui.mvp.model
+package com.kevicsalazar.uplabs.domain.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,6 +9,6 @@ data class Post(
         val id: String,
         val name: String,
         val points: Int,
-        val submitter: Submitter,
+        @SerializedName("serialized_submitter") val submitter: Submitter,
         @SerializedName("preview_url") val previewUrl: String
 )

@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.base.ext
+package com.kevicsalazar.uplabs.utils.extensions
 
 import android.widget.ImageView
 import com.squareup.picasso.Picasso

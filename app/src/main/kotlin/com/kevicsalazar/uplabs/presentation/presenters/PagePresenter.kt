@@ -1,11 +1,11 @@
-package com.kevicsalazar.uplabs.ui.mvp.presenters
+package com.kevicsalazar.uplabs.presentation.presenters
 
 
-import com.kevicsalazar.uplabs.api.ws.WebServiceIOSPosts
-import com.kevicsalazar.uplabs.api.ws.WebServiceMaterialPosts
-import com.kevicsalazar.uplabs.base.BasePresenter
-import com.kevicsalazar.uplabs.base.scopes.PerActivity
-import com.kevicsalazar.uplabs.ui.mvp.model.Post
+import com.kevicsalazar.uplabs.repository.ws.WebServiceIOSPosts
+import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
+import com.kevicsalazar.uplabs.presentation.BasePresenter
+import com.kevicsalazar.uplabs.presentation.PerActivity
+import com.kevicsalazar.uplabs.domain.model.Post
 import rx.lang.kotlin.plusAssign
 import rx.lang.kotlin.toObservable
 import rx.subscriptions.CompositeSubscription
@@ -15,31 +15,31 @@ import javax.inject.Inject
  * Created by Kevin.
  */
 @PerActivity
-class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws2: WebServiceIOSPosts) : BasePresenter<PagePresenter.UI>() {
+class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws2: WebServiceIOSPosts) : BasePresenter<PagePresenter.View>() {
 
     val cs = CompositeSubscription()
 
     fun getPosts(type: String) {
-        ui?.showProgress()
-        when(type){
+        view?.showProgress()
+        when (type) {
             "material" -> {
                 cs += ws1.getPosts()
-                        .doOnNext { ui?.clearAdapter() }
+                        .doOnNext { view?.clearAdapter() }
                         .flatMap { it.toObservable() }
                         .subscribe(
-                                { ui?.addPostToAdapter(it) },
+                                { view?.addPostToAdapter(it) },
                                 { onError(it) },
-                                { ui?.hideProgress() }
+                                { view?.hideProgress() }
                         )
             }
             "ios" -> {
                 cs += ws2.getPosts()
-                        .doOnNext { ui?.clearAdapter() }
+                        .doOnNext { view?.clearAdapter() }
                         .flatMap { it.toObservable() }
                         .subscribe(
-                                { ui?.addPostToAdapter(it) },
+                                { view?.addPostToAdapter(it) },
                                 { onError(it) },
-                                { ui?.hideProgress() }
+                                { view?.hideProgress() }
                         )
             }
         }
@@ -55,11 +55,11 @@ class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws
     }
 
     override fun onDestroy() {
-        ui == null
+        view == null
         cs.clear()
     }
 
-    interface UI : BaseUI {
+    interface View : BaseView {
 
         fun clearAdapter()
 

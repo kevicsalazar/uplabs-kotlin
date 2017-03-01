@@ -8,9 +8,9 @@ import com.kevicsalazar.uplabs.presentation.BaseActivity
 import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.ActivityComponent
 import com.kevicsalazar.uplabs.utils.SimplePagerAdapter
+import com.kevicsalazar.uplabs.utils.extensions.browse
+import com.kevicsalazar.uplabs.utils.extensions.withArguments
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.browse
-import org.jetbrains.anko.support.v4.withArguments
 
 class MainActivity : BaseActivity() {
 

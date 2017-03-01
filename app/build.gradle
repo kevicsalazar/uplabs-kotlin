@@ -39,9 +39,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     // Kotlin
-    compile "org.jetbrains.anko:anko-sdk15:0.9"
-    compile "org.jetbrains.anko:anko-appcompat-v7:0.9"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.6"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.1.0"
 
     // Data
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
@@ -49,6 +47,7 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.google.code.gson:gson:2.8.0'
 
     // Reactive
     compile 'io.reactivex:rxjava:1.2.1'

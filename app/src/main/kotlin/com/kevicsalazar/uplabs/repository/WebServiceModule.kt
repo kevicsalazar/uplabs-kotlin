@@ -1,10 +1,8 @@
 package com.kevicsalazar.uplabs.repository
 
 import com.kevicsalazar.uplabs.BuildConfig
-import com.kevicsalazar.uplabs.repository.ws.WebServiceIOSPosts
-import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
 import com.kevicsalazar.uplabs.PerApp
-import com.kevicsalazar.uplabs.repository.ws.WebServiceSitePosts
+import com.kevicsalazar.uplabs.repository.ws.WebServicePosts
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -41,31 +39,13 @@ class WebServiceModule {
                 .build())
     }.build()!!
 
-    @Provides @PerApp @Named("material") fun provideMaterialRetrofit(client: OkHttpClient) = Retrofit.Builder()
-            .baseUrl("https://material.uplabs.com")
+    @Provides @PerApp @Named("uplabs") fun provideUplabsRetrofit(client: OkHttpClient) = Retrofit.Builder()
+            .baseUrl("https://www.uplabs.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .client(client)
             .build()!!
 
-    @Provides @PerApp @Named("ios") fun provideIOSRetrofit(client: OkHttpClient) = Retrofit.Builder()
-            .baseUrl("https://ios.uplabs.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .client(client)
-            .build()!!
-
-    @Provides @PerApp @Named("site") fun provideSiteRetrofit(client: OkHttpClient) = Retrofit.Builder()
-            .baseUrl("https://site.uplabs.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .client(client)
-            .build()!!
-
-    @Provides @PerApp fun provideWebServiceMaterialPosts(@Named("material") retrofit: Retrofit) = retrofit.create(WebServiceMaterialPosts.Service::class.java)!!
-
-    @Provides @PerApp fun provideWebServiceIOSPosts(@Named("ios") retrofit: Retrofit) = retrofit.create(WebServiceIOSPosts.Service::class.java)!!
-
-    @Provides @PerApp fun provideWebServiceSitePosts(@Named("site") retrofit: Retrofit) = retrofit.create(WebServiceSitePosts.Service::class.java)!!
+    @Provides @PerApp fun provideWebServicePosts(@Named("uplabs") retrofit: Retrofit) = retrofit.create(WebServicePosts.Service::class.java)!!
 
 }

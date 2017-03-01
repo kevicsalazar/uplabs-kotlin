@@ -3,6 +3,7 @@ package com.kevicsalazar.uplabs.repository.ws
 import com.kevicsalazar.uplabs.PerApp
 import com.kevicsalazar.uplabs.domain.model.Post
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -14,18 +15,18 @@ import javax.inject.Inject
  * @link kevicsalazar.com
  */
 @PerApp
-class WebServiceMaterialPosts @Inject constructor(val service: Service) {
+class WebServicePosts @Inject constructor(val service: Service) {
 
-    fun getPosts(): Observable<List<Post>> {
-        return service.getPosts("1")
+    fun getPosts(type: String): Observable<List<Post>> {
+        return service.getPosts("https://$type.uplabs.com/posts", "1")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     interface Service {
 
-        @GET("posts")
-        fun getPosts(@Query("page") page: String): Observable<List<Post>>
+        @GET("{path}")
+        fun getPosts(@Path(value = "path", encoded = true ) path: String, @Query("page") page: String): Observable<List<Post>>
 
     }
 

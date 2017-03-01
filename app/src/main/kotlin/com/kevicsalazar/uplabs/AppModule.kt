@@ -3,7 +3,6 @@ package com.kevicsalazar.uplabs
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.kevicsalazar.uplabs.PerApp
 import dagger.Module
 import dagger.Provides
 

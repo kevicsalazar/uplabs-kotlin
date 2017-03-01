@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.presentation.ui
+package com.kevicsalazar.uplabs.presentation.views
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager

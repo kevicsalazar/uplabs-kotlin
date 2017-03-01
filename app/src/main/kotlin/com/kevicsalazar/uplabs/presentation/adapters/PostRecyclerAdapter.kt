@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import com.kevicsalazar.uplabs.domain.model.Post
 import android.view.LayoutInflater
 import com.kevicsalazar.uplabs.R
+import com.kevicsalazar.uplabs.utils.extensions.Transformation
 import com.kevicsalazar.uplabs.utils.extensions.loadUrl
-import com.kevicsalazar.uplabs.utils.CropCircleTransformation
 import kotlinx.android.synthetic.main.item_post.view.*
 
 
@@ -28,7 +28,7 @@ class PostRecyclerAdapter : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>
         with(holder.itemView) {
             val post = posts[position]
             ivPreview.loadUrl(post.previewUrl)
-            ivAvatar.loadUrl(post.submitter.avatarUrl, CropCircleTransformation())
+            ivAvatar.loadUrl(post.submitter.avatarUrl, Transformation.Circle)
             tvPostName.text = post.name
             tvSubmitterName.text = post.submitter.fullName
         }

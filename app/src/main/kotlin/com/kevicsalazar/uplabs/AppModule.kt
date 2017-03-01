@@ -1,6 +1,8 @@
 package com.kevicsalazar.uplabs
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import com.kevicsalazar.uplabs.PerApp
 import dagger.Module
 import dagger.Provides
@@ -13,5 +15,7 @@ import dagger.Provides
 class AppModule(private val app: App) {
 
     @Provides @PerApp fun provideContext(): Context = app
+
+    @Provides @PerApp fun provideSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
 
 }

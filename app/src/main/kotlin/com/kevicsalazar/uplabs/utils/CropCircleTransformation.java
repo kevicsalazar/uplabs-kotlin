@@ -9,8 +9,7 @@ import android.graphics.Paint;
 import com.squareup.picasso.Transformation;
 
 /**
- * @author Kevin Salazar
- * @link kevicsalazar.com
+ * Created by Kevin.
  */
 
 public class CropCircleTransformation implements Transformation {

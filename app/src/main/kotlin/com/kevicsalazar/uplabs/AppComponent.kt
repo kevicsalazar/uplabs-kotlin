@@ -1,10 +1,10 @@
 package com.kevicsalazar.uplabs
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.kevicsalazar.uplabs.repository.WebServiceModule
 import com.kevicsalazar.uplabs.repository.ws.WebServiceIOSPosts
 import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
-import com.kevicsalazar.uplabs.PerApp
 import dagger.Component
 
 /**
@@ -20,6 +20,8 @@ interface AppComponent {
     // App Module
 
     fun getContext(): Context
+
+    fun getSharedPreferences(): SharedPreferences
 
     // Web Service
 

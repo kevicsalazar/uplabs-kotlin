@@ -3,9 +3,8 @@ package com.kevicsalazar.uplabs.presentation
 import android.support.v4.app.FragmentActivity
 import com.kevicsalazar.uplabs.App
 import com.kevicsalazar.uplabs.AppComponent
-import com.kevicsalazar.uplabs.presentation.PerActivity
-import com.kevicsalazar.uplabs.presentation.ui.MainActivity
-import com.kevicsalazar.uplabs.presentation.ui.PageFragment
+import com.kevicsalazar.uplabs.presentation.views.MainActivity
+import com.kevicsalazar.uplabs.presentation.views.PageFragment
 import dagger.Component
 
 /**

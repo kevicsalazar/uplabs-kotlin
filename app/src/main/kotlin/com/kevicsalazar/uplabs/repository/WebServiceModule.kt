@@ -4,6 +4,7 @@ import com.kevicsalazar.uplabs.BuildConfig
 import com.kevicsalazar.uplabs.repository.ws.WebServiceIOSPosts
 import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
 import com.kevicsalazar.uplabs.PerApp
+import com.kevicsalazar.uplabs.repository.ws.WebServiceSitePosts
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -54,8 +55,17 @@ class WebServiceModule {
             .client(client)
             .build()!!
 
+    @Provides @PerApp @Named("site") fun provideSiteRetrofit(client: OkHttpClient) = Retrofit.Builder()
+            .baseUrl("https://site.uplabs.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .client(client)
+            .build()!!
+
     @Provides @PerApp fun provideWebServiceMaterialPosts(@Named("material") retrofit: Retrofit) = retrofit.create(WebServiceMaterialPosts.Service::class.java)!!
 
     @Provides @PerApp fun provideWebServiceIOSPosts(@Named("ios") retrofit: Retrofit) = retrofit.create(WebServiceIOSPosts.Service::class.java)!!
+
+    @Provides @PerApp fun provideWebServiceSitePosts(@Named("site") retrofit: Retrofit) = retrofit.create(WebServiceSitePosts.Service::class.java)!!
 
 }

@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.kevicsalazar.uplabs.repository.WebServiceModule
 import com.kevicsalazar.uplabs.repository.ws.WebServiceIOSPosts
 import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
+import com.kevicsalazar.uplabs.repository.ws.WebServiceSitePosts
 import dagger.Component
 
 /**
@@ -28,6 +29,8 @@ interface AppComponent {
     fun getWebServiceMaterialPosts(): WebServiceMaterialPosts
 
     fun getWebServiceIOSPosts(): WebServiceIOSPosts
+
+    fun getWebServiceSitePosts(): WebServiceSitePosts
 
     // Initializer
 

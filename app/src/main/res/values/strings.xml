@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">UpLabs</string>
     <string name="browser">Abrir Web</string>
+    <string name="materialup">MaterialUp</string>
+    <string name="siteup">SiteUp</string>
+    <string name="iosup">iOSUp</string>
 </resources>

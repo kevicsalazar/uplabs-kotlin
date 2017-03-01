@@ -1,5 +1,8 @@
 package com.kevicsalazar.uplabs.presentation.views
 
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,9 +10,7 @@ import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseActivity
 import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.ActivityComponent
-import com.kevicsalazar.uplabs.utils.SimplePagerAdapter
-import com.kevicsalazar.uplabs.utils.extensions.browse
-import com.kevicsalazar.uplabs.utils.extensions.withArguments
+import com.kevicsalazar.uplabs.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -19,11 +20,16 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         title = ""
 
-        val pagerAdapter = SimplePagerAdapter(supportFragmentManager)
-        pagerAdapter.addFragment(PageFragment().withArguments("type" to "material"), "MATERIAL")
-        pagerAdapter.addFragment(PageFragment().withArguments("type" to "ios"), "IOS")
-        viewpager.adapter = pagerAdapter
-        tabs.setupWithViewPager(viewpager)
+        showMaterialUpFragment()
+
+        bottomNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.action_materialup -> consume { showMaterialUpFragment() }
+                R.id.action_iosup -> consume { showIOSUPFragment() }
+                R.id.action_siteup -> consume { showSiteUpFragment() }
+                else -> false
+            }
+        }
 
     }
 
@@ -38,11 +44,40 @@ class MainActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.action_browser -> browse("https://www.uplabs.com/")
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
+        R.id.action_browser -> consume { browse("https://www.uplabs.com/") }
+        else -> super.onOptionsItemSelected(item)
+    }
+
+    fun showMaterialUpFragment() {
+        setupView(R.drawable.bg_material_tab, R.color.materialUpColor)
+        replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "material"))
+    }
+
+    fun showIOSUPFragment() {
+        setupView(R.drawable.bg_ios_tab, R.color.iOSUpColor)
+        replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "ios"))
+    }
+
+    fun showSiteUpFragment() {
+        setupView(R.drawable.bg_site_tab, R.color.siteUpColor)
+        replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "site"))
+    }
+
+    fun setupView(drawableResId: Int, colorResId: Int) {
+
+        bottomNavigation.itemIconTintList = colorStateListRes(drawableResId)
+        bottomNavigation.itemTextColor = colorStateListRes(drawableResId)
+
+        val currentColor = (toolbar.background as ColorDrawable).color
+        val anim = ValueAnimator.ofObject(ArgbEvaluator(), currentColor, colorRes(colorResId))
+        anim.duration = 500
+        anim.addUpdateListener {
+            val color = it.animatedValue as Int
+            setStatusBarColor(getDarkColor(color))
+            toolbar.setBackgroundColor(color)
         }
-        return super.onOptionsItemSelected(item)
+        anim.start()
     }
 
 }

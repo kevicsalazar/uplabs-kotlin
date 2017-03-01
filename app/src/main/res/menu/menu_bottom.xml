@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_materialup"
+        android:icon="@drawable/ic_web"
+        android:title="@string/materialup"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_iosup"
+        android:icon="@drawable/ic_web"
+        android:title="@string/iosup"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_siteup"
+        android:icon="@drawable/ic_web"
+        android:title="@string/siteup"
+        app:showAsAction="never" />
+</menu>

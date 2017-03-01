@@ -6,6 +6,7 @@ import com.kevicsalazar.uplabs.repository.ws.WebServiceMaterialPosts
 import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.PerActivity
 import com.kevicsalazar.uplabs.domain.model.Post
+import com.kevicsalazar.uplabs.repository.ws.WebServiceSitePosts
 import rx.lang.kotlin.plusAssign
 import rx.lang.kotlin.toObservable
 import rx.subscriptions.CompositeSubscription
@@ -15,7 +16,7 @@ import javax.inject.Inject
  * Created by Kevin.
  */
 @PerActivity
-class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws2: WebServiceIOSPosts) : BasePresenter<PagePresenter.View>() {
+class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws2: WebServiceIOSPosts, val ws3: WebServiceSitePosts) : BasePresenter<PagePresenter.View>() {
 
     val cs = CompositeSubscription()
 
@@ -42,6 +43,16 @@ class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws
                                 { view?.hideProgress() }
                         )
             }
+            "site" -> {
+                cs += ws3.getPosts()
+                        .doOnNext { view?.clearAdapter() }
+                        .flatMap { it.toObservable() }
+                        .subscribe(
+                                { view?.addPostToAdapter(it) },
+                                { onError(it) },
+                                { view?.hideProgress() }
+                        )
+            }
         }
 
     }
@@ -55,7 +66,7 @@ class PagePresenter @Inject constructor(val ws1: WebServiceMaterialPosts, val ws
     }
 
     override fun onDestroy() {
-        view == null
+        view = null
         cs.clear()
     }
 

@@ -18,10 +18,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
-        title = ""
-
         showMaterialUpFragment()
-
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_materialup -> consume { showMaterialUpFragment() }
@@ -30,7 +27,6 @@ class MainActivity : BaseActivity() {
                 else -> false
             }
         }
-
     }
 
     override val layout: Int get() = R.layout.activity_main
@@ -74,7 +70,7 @@ class MainActivity : BaseActivity() {
         anim.duration = 500
         anim.addUpdateListener {
             val color = it.animatedValue as Int
-            setStatusBarColor(getDarkColor(color))
+            setStatusBarColor(getColorPalette(color).second)
             toolbar.setBackgroundColor(color)
         }
         anim.start()

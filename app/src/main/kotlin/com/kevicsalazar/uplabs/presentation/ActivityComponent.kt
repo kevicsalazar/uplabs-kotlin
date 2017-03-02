@@ -5,6 +5,7 @@ import com.kevicsalazar.uplabs.App
 import com.kevicsalazar.uplabs.AppComponent
 import com.kevicsalazar.uplabs.presentation.views.MainActivity
 import com.kevicsalazar.uplabs.presentation.views.PageFragment
+import com.kevicsalazar.uplabs.presentation.views.PostActivity
 import dagger.Component
 
 /**
@@ -18,6 +19,8 @@ interface ActivityComponent {
     fun inject(activity: MainActivity)
 
     fun inject(fragment: PageFragment)
+
+    fun inject(activity: PostActivity)
 
     // Initializer
 

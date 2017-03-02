@@ -25,11 +25,13 @@ class PageFragment : BaseFragment(), PagePresenter.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        postAdapter = PostRecyclerAdapter()
+        val type = arguments.getString("type")
+
+        postAdapter = PostRecyclerAdapter(activity, type)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = postAdapter
 
-        mPresenter.getPosts(arguments.getString("type"))
+        mPresenter.getPosts(type)
 
     }
 

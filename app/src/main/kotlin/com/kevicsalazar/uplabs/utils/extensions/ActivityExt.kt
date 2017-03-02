@@ -22,3 +22,7 @@ fun AppCompatActivity.setStatusBarColor(color: Int) {
         window.statusBarColor = color
     }
 }
+
+fun AppCompatActivity.showHomeButton() {
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+}

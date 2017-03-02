@@ -1,11 +1,14 @@
 package com.kevicsalazar.uplabs.presentation.adapters
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.kevicsalazar.uplabs.domain.model.Post
 import android.view.LayoutInflater
 import com.kevicsalazar.uplabs.R
+import com.kevicsalazar.uplabs.presentation.views.PostActivity
 import com.kevicsalazar.uplabs.utils.extensions.Transformation
 import com.kevicsalazar.uplabs.utils.extensions.loadUrl
 import kotlinx.android.synthetic.main.item_post.view.*
@@ -15,7 +18,7 @@ import kotlinx.android.synthetic.main.item_post.view.*
  * Created by Kevin.
  */
 
-class PostRecyclerAdapter : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
+class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
 
     private var posts = mutableListOf<Post>()
 
@@ -31,18 +34,25 @@ class PostRecyclerAdapter : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>
             ivAvatar.loadUrl(post.submitter.avatarUrl, Transformation.Circle)
             tvPostName.text = post.name
             tvSubmitterName.text = post.submitter.fullName
+            tag = post.id
+            setOnClickListener {
+                val intent = Intent(act, PostActivity::class.java)
+                intent.putExtra("type", type)
+                intent.putExtra("id", it.tag as String)
+                act.startActivity(intent)
+            }
         }
     }
 
     override fun getItemCount() = posts.size
 
     fun add(post: Post) {
-        posts.add(post)
+        this.posts.add(post)
         notifyDataSetChanged()
     }
 
     fun clear() {
-        posts.clear()
+        this.posts.clear()
         notifyDataSetChanged()
     }
 

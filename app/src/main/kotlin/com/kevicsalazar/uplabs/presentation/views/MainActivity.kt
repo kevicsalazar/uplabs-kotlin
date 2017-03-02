@@ -46,17 +46,17 @@ class MainActivity : BaseActivity() {
     }
 
     fun showMaterialUpFragment() {
-        setupView(R.drawable.bg_material_tab, R.color.materialUpColor)
+        setupView(R.drawable.bg_material_tab, R.color.material)
         replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "material"))
     }
 
     fun showIOSUPFragment() {
-        setupView(R.drawable.bg_ios_tab, R.color.iOSUpColor)
+        setupView(R.drawable.bg_ios_tab, R.color.ios)
         replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "ios"))
     }
 
     fun showSiteUpFragment() {
-        setupView(R.drawable.bg_site_tab, R.color.siteUpColor)
+        setupView(R.drawable.bg_site_tab, R.color.site)
         replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "site"))
     }
 
@@ -67,7 +67,7 @@ class MainActivity : BaseActivity() {
 
         val currentColor = (toolbar.background as ColorDrawable).color
         val anim = ValueAnimator.ofObject(ArgbEvaluator(), currentColor, colorRes(colorResId))
-        anim.duration = 500
+        anim.duration = 250
         anim.addUpdateListener {
             val color = it.animatedValue as Int
             setStatusBarColor(getColorPalette(color).second)

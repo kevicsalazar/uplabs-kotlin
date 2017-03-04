@@ -47,7 +47,7 @@
                     tools:text="Credit Card Checkout" />
 
                 <TextView
-                    android:id="@+id/tvSubmitterName"
+                    android:id="@+id/tvMakerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"

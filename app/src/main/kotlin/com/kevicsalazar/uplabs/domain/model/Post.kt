@@ -9,6 +9,7 @@ data class Post(
         val id: String,
         val name: String,
         val points: Int,
-        @SerializedName("serialized_submitter") val submitter: Submitter,
+        @SerializedName("maker_name") val makerName: String,
+        @SerializedName("serialized_maker") val maker: Maker?,
         @SerializedName("preview_url") val previewUrl: String
 )

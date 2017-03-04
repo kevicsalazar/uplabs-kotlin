@@ -3,6 +3,7 @@ package com.kevicsalazar.uplabs.presentation.adapters
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.kevicsalazar.uplabs.domain.model.Post
@@ -31,9 +32,9 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
         with(holder.itemView) {
             val post = posts[position]
             ivPreview.loadUrl(post.previewUrl)
-            ivAvatar.loadUrl(post.submitter.avatarUrl, Transformation.Circle)
+            ivAvatar.loadUrl(post.maker?.avatarUrl, Transformation.Circle)
             tvPostName.text = post.name
-            tvSubmitterName.text = post.submitter.fullName
+            tvMakerName.text = post.maker?.fullName ?: post.makerName
             tag = post.id
             setOnClickListener {
                 val intent = Intent(act, PostActivity::class.java)
@@ -41,6 +42,8 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
                 intent.putExtra("id", it.tag as String)
                 act.startActivity(intent)
             }
+
+
         }
     }
 

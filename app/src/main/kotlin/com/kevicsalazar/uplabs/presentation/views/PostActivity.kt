@@ -1,6 +1,5 @@
 package com.kevicsalazar.uplabs.presentation.views
 
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
@@ -41,11 +40,19 @@ class PostActivity : BaseActivity(), PostPresenter.View {
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
         android.R.id.home -> consume { onBackPressed() }
-        else -> super.onOptionsItemSelected(item)
+        else              -> super.onOptionsItemSelected(item)
     }
 
     override fun showPostInfo(post: Post) {
         ivPost.loadUrl(post.previewUrl)
+        tvName.text = post.name
+        tvDescription.text = post.description
+        btnShare.setOnClickListener {
+            share(getString(R.string.share_with), post.linkUrl)
+        }
+        btnLink.setOnClickListener {
+            browse(post.linkUrl)
+        }
     }
 
     override fun showProgress() {

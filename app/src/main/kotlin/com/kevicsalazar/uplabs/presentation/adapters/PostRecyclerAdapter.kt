@@ -3,7 +3,6 @@ package com.kevicsalazar.uplabs.presentation.adapters
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.kevicsalazar.uplabs.domain.model.Post
@@ -42,8 +41,6 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
                 intent.putExtra("id", it.tag as String)
                 act.startActivity(intent)
             }
-
-
         }
     }
 

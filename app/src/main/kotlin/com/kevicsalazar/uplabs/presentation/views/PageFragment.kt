@@ -50,11 +50,11 @@ class PageFragment : BaseFragment(), PagePresenter.View {
     }
 
     override fun showProgress() {
-
+        swipeRefresh.isRefreshing = true
     }
 
     override fun hideProgress() {
-
+        swipeRefresh.isRefreshing = false
     }
 
     override fun showMessage(title: String, message: String) {

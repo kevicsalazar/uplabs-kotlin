@@ -1,5 +1,6 @@
 package com.kevicsalazar.uplabs.presentation.views
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
@@ -28,8 +29,6 @@ class PostActivity : BaseActivity(), PostPresenter.View {
         val id = intent.getStringExtra("id")
         mPresenter.getPost(type, id)
 
-        applyColor(colorRes(R.color.colorPrimary))
-
     }
 
     override val layout: Int get() = R.layout.activity_post
@@ -45,8 +44,10 @@ class PostActivity : BaseActivity(), PostPresenter.View {
 
     override fun showPostInfo(post: Post) {
         ivPost.loadUrl(post.previewUrl)
-        tvName.text = post.name
-        tvDescription.text = post.description
+        tvTitle.text = post.name
+        tvSubtitle.text = post.maker?.fullName ?: post.makerName
+        tvDescription.text = post.description.fromHtml()
+        applyColor(Color.parseColor(post.colorHex))
         btnShare.setOnClickListener {
             share(getString(R.string.share_with), post.linkUrl)
         }
@@ -72,5 +73,6 @@ class PostActivity : BaseActivity(), PostPresenter.View {
         collapsingToolbar.setBackgroundColor(colorPalette.first)
         collapsingToolbar.setContentScrimColor(colorPalette.first)
         collapsingToolbar.setStatusBarScrimColor(colorPalette.second)
+        toolbarWrapper.setBackgroundColor(colorPalette.second)
     }
 }

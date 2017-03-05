@@ -23,22 +23,21 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
     private var posts = mutableListOf<Post>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
-        return ViewHolder(v)
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.itemView) {
             val post = posts[position]
-            ivPreview.loadUrl(post.previewUrl)
-            ivAvatar.loadUrl(post.maker?.avatarUrl, Transformation.Circle)
             tvPostName.text = post.name
-            tvMakerName.text = post.maker?.fullName ?: post.makerName
-            tag = post.id
+            ivPreview.loadUrl(post.previewUrl)
+            tvMakerName.text = "by " + (post.maker?.fullName ?: post.makerName)
+            ivAvatar.loadUrl(post.maker?.avatarUrl, Transformation.Circle)
+            tvPoints.text = post.points.toString()
             setOnClickListener {
                 val intent = Intent(act, PostActivity::class.java)
                 intent.putExtra("type", type)
-                intent.putExtra("id", it.tag as String)
+                intent.putExtra("id", post.id)
                 act.startActivity(intent)
             }
         }

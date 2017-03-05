@@ -20,7 +20,7 @@ class PagePresenter @Inject constructor(val ws1: WebServicePosts, val dh: DataHe
 
     fun getPosts(type: String) {
         view?.showProgress()
-        getPostsFromLocal(type)
+        //getPostsFromLocal(type)
         cs += ws1.getPosts(type)
                 .doOnNext {
                     dh.setPosts(type, it)

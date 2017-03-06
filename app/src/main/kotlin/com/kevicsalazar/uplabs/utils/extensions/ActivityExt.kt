@@ -1,6 +1,6 @@
 package com.kevicsalazar.uplabs.utils.extensions
 
-import android.os.Build
+import android.annotation.SuppressLint
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
@@ -17,8 +17,9 @@ fun FragmentActivity.replaceContentFragment(containerViewId: Int, fragment: Frag
     return fragment
 }
 
+@SuppressLint("NewApi")
 fun AppCompatActivity.setStatusBarColor(color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (lollipopOrNewer()) {
         window.statusBarColor = color
     }
 }

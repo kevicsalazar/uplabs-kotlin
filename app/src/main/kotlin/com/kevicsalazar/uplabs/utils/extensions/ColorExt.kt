@@ -2,20 +2,21 @@ package com.kevicsalazar.uplabs.utils.extensions
 
 import android.graphics.Color
 
+
 /**
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
 
-fun GetMaterialColors(color: String): ColorPalette {
-    return GetMaterialColors(color.substring(1).toLong(16))
+fun MaterialColors(color: String): ColorPalette {
+    return MaterialColors(color.substring(1).toLong(16))
 }
 
-fun GetMaterialColors(color: Int): ColorPalette {
-    return GetMaterialColors(color.toLong() and 0xFFFFFF)
+fun MaterialColors(color: Int): ColorPalette {
+    return MaterialColors(color.toLong() and 0xFFFFFF)
 }
 
-fun GetMaterialColors(f: Long): ColorPalette {
+fun MaterialColors(f: Long): ColorPalette {
     return ColorPalette(
             shadeColor(f, 0.9),
             shadeColor(f, 0.7),

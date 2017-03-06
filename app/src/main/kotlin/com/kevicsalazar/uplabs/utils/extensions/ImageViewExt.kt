@@ -4,8 +4,11 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.kevicsalazar.uplabs.utils.CropCircleTransformation
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
+import android.graphics.drawable.BitmapDrawable
+
 
 /**
  * @author Kevin Salazar
@@ -18,18 +21,13 @@ fun ImageView.loadUrl(url: String?, transformation: Transformation? = null, cb: 
             Transformation.Circle -> CropCircleTransformation()
         })
     }
-    picasso.into(object : Target{
-        override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-
+    picasso.into(this, object : Callback {
+        override fun onSuccess() {
+            cb?.invoke((drawable as BitmapDrawable).bitmap)
         }
 
-        override fun onBitmapFailed(errorDrawable: Drawable?) {
-
-        }
-
-        override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-            cb?.invoke(bitmap)
-            setImageBitmap(bitmap)
+        override fun onError() {
+            e("No se pudo cargar la imagen")
         }
     })
 }

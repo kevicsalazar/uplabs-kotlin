@@ -10,6 +10,7 @@ import com.kevicsalazar.uplabs.presentation.ActivityComponent
 import com.kevicsalazar.uplabs.presentation.adapters.PostRecyclerAdapter
 import com.kevicsalazar.uplabs.domain.model.Post
 import com.kevicsalazar.uplabs.presentation.presenters.PagePresenter
+import com.kevicsalazar.uplabs.utils.extensions.alert
 import kotlinx.android.synthetic.main.fragment_page.*
 import javax.inject.Inject
 
@@ -58,7 +59,7 @@ class PageFragment : BaseFragment(), PagePresenter.View {
     }
 
     override fun showMessage(title: String, message: String) {
-
+        alert(title, message).show()
     }
 
 }

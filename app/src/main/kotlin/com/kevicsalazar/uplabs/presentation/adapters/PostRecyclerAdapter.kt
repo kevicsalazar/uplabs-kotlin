@@ -47,7 +47,7 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
 
     fun add(post: Post) {
         this.posts.add(post)
-        notifyDataSetChanged()
+        notifyItemInserted(posts.size)
     }
 
     fun clear() {

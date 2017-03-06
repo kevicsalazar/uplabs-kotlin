@@ -1,6 +1,5 @@
 package com.kevicsalazar.uplabs.presentation.views
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.graphics.Palette
 import android.view.MenuItem
@@ -46,7 +45,7 @@ class PostActivity : BaseActivity(), PostPresenter.View {
     override fun setupPostImage(post: Post) {
         ivPost.loadUrl(post.previewUrl) {
             Palette.from(it).generate {
-                applyColor(it.vibrantSwatch?.rgb ?: GetMaterialColors(post.colorHex).C700)
+                applyColor(it.vibrantSwatch?.rgb ?: MaterialColors(post.colorHex).C700)
             }
         }
     }

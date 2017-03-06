@@ -2,6 +2,7 @@ package com.kevicsalazar.uplabs.presentation.views
 
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.graphics.Palette
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.domain.model.Post
@@ -42,12 +43,21 @@ class PostActivity : BaseActivity(), PostPresenter.View {
         else              -> super.onOptionsItemSelected(item)
     }
 
+    override fun setupPostImage(post: Post) {
+        ivPost.loadUrl(post.previewUrl) {
+            Palette.from(it).generate {
+                applyColor(it.vibrantSwatch?.rgb ?: GetMaterialColors(post.colorHex).C700)
+            }
+        }
+    }
+
     override fun showPostInfo(post: Post) {
-        ivPost.loadUrl(post.previewUrl)
         tvTitle.text = post.name
         tvSubtitle.text = post.maker?.fullName ?: post.makerName
         tvDescription.text = post.description.fromHtml()
-        applyColor(Color.parseColor(post.colorHex))
+    }
+
+    override fun setupButtons(post: Post) {
         btnShare.setOnClickListener {
             share(getString(R.string.share_with), post.linkUrl)
         }
@@ -69,10 +79,10 @@ class PostActivity : BaseActivity(), PostPresenter.View {
     }
 
     fun applyColor(color: Int) {
-        val colorPalette = getColorPalette(color)
-        collapsingToolbar.setBackgroundColor(colorPalette.first)
-        collapsingToolbar.setContentScrimColor(colorPalette.first)
-        collapsingToolbar.setStatusBarScrimColor(colorPalette.second)
-        toolbarWrapper.setBackgroundColor(colorPalette.second)
+        collapsingToolbar.setBackgroundColor(color)
+        collapsingToolbar.setContentScrimColor(color)
+        collapsingToolbar.setStatusBarScrimColor(color)
+        toolbarWrapper.setBackgroundColor(color)
     }
+
 }

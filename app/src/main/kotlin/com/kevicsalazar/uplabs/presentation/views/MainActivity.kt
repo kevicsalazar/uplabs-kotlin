@@ -22,9 +22,9 @@ class MainActivity : BaseActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_materialup -> consume { showMaterialUpFragment() }
-                R.id.action_iosup -> consume { showIOSUPFragment() }
-                R.id.action_siteup -> consume { showSiteUpFragment() }
-                else -> false
+                R.id.action_iosup      -> consume { showIOSUPFragment() }
+                R.id.action_siteup     -> consume { showSiteUpFragment() }
+                else                   -> false
             }
         }
     }
@@ -42,7 +42,7 @@ class MainActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
         R.id.action_browser -> consume { browse("https://www.uplabs.com/") }
-        else -> super.onOptionsItemSelected(item)
+        else                -> super.onOptionsItemSelected(item)
     }
 
     fun showMaterialUpFragment() {
@@ -70,7 +70,7 @@ class MainActivity : BaseActivity() {
         anim.duration = 250
         anim.addUpdateListener {
             val color = it.animatedValue as Int
-            setStatusBarColor(getColorPalette(color).second)
+            setStatusBarColor(GetMaterialColors(color).C700)
             toolbar.setBackgroundColor(color)
         }
         anim.start()

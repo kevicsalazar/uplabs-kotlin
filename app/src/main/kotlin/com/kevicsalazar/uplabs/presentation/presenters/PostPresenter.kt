@@ -18,7 +18,9 @@ class PostPresenter @Inject constructor(val dh: DataHelper) : BasePresenter<Post
 
     fun getPost(type: String, id: String) {
         dh.getPost(type, id)?.let {
+            view?.setupPostImage(it)
             view?.showPostInfo(it)
+            view?.setupButtons(it)
         }
     }
 
@@ -36,7 +38,11 @@ class PostPresenter @Inject constructor(val dh: DataHelper) : BasePresenter<Post
 
     interface View : BaseView {
 
+        fun setupPostImage(post: Post)
+
         fun showPostInfo(post: Post)
+
+        fun setupButtons(post: Post)
 
     }
 

@@ -11,8 +11,8 @@ data class Post(
         val points: Int,
         @SerializedName("link_url") val linkUrl: String,
         @SerializedName("background_color") val colorHex: String,
-        @SerializedName("description") val description: String,
-        @SerializedName("maker_name") val makerName: String,
+        @SerializedName("description") val description: String?,
+        @SerializedName("maker_name") val makerName: String?,
         @SerializedName("serialized_maker") val maker: Maker?,
         @SerializedName("preview_url") val previewUrl: String
 )

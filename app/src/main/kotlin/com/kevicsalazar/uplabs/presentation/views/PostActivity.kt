@@ -53,12 +53,12 @@ class PostActivity : BaseActivity(), PostPresenter.View {
     override fun showPostInfo(post: Post) {
         tvTitle.text = post.name
         tvSubtitle.text = post.maker?.fullName ?: post.makerName
-        tvDescription.text = post.description.fromHtml()
+        tvDescription.text = post.description?.fromHtml()
     }
 
     override fun setupButtons(post: Post) {
         btnShare.setOnClickListener {
-            share(getString(R.string.share_with), post.linkUrl)
+            share(post.linkUrl, post.name)
         }
         btnLink.setOnClickListener {
             browse(post.linkUrl)

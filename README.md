@@ -3,9 +3,9 @@ Kotlin Sample Project for Android
 
 This is an example of Android using Kotlin, MVP pattern and other libraries.
 
-<img src="./screenshot1.png" height="640" />
-<img src="./screenshot2.png" height="640" />
-<img src="./screenshot3.png" height="640" />
+<img src="./art/screenshot1.png" height="640" />
+<img src="./art/screenshot2.png" height="640" />
+<img src="./art/screenshot3.png" height="640" />
 
 ## Kotlin
 ---

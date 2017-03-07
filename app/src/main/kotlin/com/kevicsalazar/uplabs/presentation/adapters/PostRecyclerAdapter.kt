@@ -1,7 +1,6 @@
 package com.kevicsalazar.uplabs.presentation.adapters
 
 import android.app.Activity
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,8 @@ import com.kevicsalazar.uplabs.presentation.views.PostActivity
 import com.kevicsalazar.uplabs.utils.extensions.Transformation
 import com.kevicsalazar.uplabs.utils.extensions.loadUrl
 import kotlinx.android.synthetic.main.item_post.view.*
+import android.support.v7.app.AppCompatActivity
+import com.kevicsalazar.uplabs.utils.extensions.startActivity
 
 
 /**
@@ -35,10 +36,11 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
             ivAvatar.loadUrl(post.maker?.avatarUrl, Transformation.Circle)
             tvPoints.text = post.points.toString()
             setOnClickListener {
-                val intent = Intent(act, PostActivity::class.java)
-                intent.putExtra("type", type)
-                intent.putExtra("id", post.id)
-                act.startActivity(intent)
+                act as AppCompatActivity
+                act.startActivity<PostActivity>(
+                        listOf("type" to type, "id" to post.id),
+                        listOf(ivPreview to "preview")
+                )
             }
         }
     }

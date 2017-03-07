@@ -5,9 +5,6 @@ import com.kevicsalazar.uplabs.domain.DataHelper
 import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.PerActivity
 import com.kevicsalazar.uplabs.domain.model.Post
-import com.kevicsalazar.uplabs.repository.ws.WebServicePosts
-import rx.lang.kotlin.plusAssign
-import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
 /**

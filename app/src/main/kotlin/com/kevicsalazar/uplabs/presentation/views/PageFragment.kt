@@ -33,6 +33,9 @@ class PageFragment : BaseFragment(), PagePresenter.View {
         recyclerView.adapter = postAdapter
 
         mPresenter.getPosts(type)
+        swipeRefresh.setOnRefreshListener {
+            mPresenter.getPosts(type)
+        }
 
     }
 

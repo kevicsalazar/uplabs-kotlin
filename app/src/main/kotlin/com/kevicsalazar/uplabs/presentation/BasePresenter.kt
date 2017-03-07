@@ -36,19 +36,8 @@ abstract class BasePresenter<T : BasePresenter.BaseView> {
     abstract fun onDestroy()
 
     /**
-     * This method will be executed when an error occurs
-
-     * @param error is an error or exception
+     * Base Interface for View
      */
-    fun onError(error: Throwable) {
-        view?.hideProgress()
-        error.printStackTrace()
-        if (error is IOException) {
-            view?.showMessage("Error", "No hay internet")
-        } else {
-            view?.showMessage("Error", "Ha ocurrido un error")
-        }
-    }
 
     interface BaseView {
 

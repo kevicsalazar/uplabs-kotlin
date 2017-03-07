@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_materialup"
-        android:icon="@drawable/ic_web"
+        android:icon="@drawable/ic_material"
         android:title="@string/materialup"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_iosup"
-        android:icon="@drawable/ic_web"
+        android:icon="@drawable/ic_ios"
         android:title="@string/iosup"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_siteup"
-        android:icon="@drawable/ic_web"
+        android:icon="@drawable/ic_site"
         android:title="@string/siteup"
         app:showAsAction="never" />
 </menu>

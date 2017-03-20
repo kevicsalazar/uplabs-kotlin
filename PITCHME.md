@@ -52,7 +52,10 @@ Picasso.with(imageView.context).load(url).into(imageView)
 O si queremos agregar alguna transformación sería así.
 
 ```
-Picasso.with(context).load("").transform(CropCircleTransformation())into(imageView)
+Picasso.with(context)
+    .load(url)
+    .transform(CropCircleTransformation())
+    .into(imageView)
 ```
 
 #HSLIDE
@@ -69,6 +72,10 @@ fun ImageView.loadUrl(url: String) {
 imageView.loadUrl(url)
 ```
 
+#HSLIDE
+
+* **Picasso**
+
 Agregando transformaciones
 
 ```
@@ -84,6 +91,10 @@ fun ImageView.loadUrl(url: String?, transformation: Transformation? = null) {
 
 imageView.loadUrl(url, Transformation.Circle)
 ```
+
+#HSLIDE
+
+* **Picasso**
 
 Agregando un callback, si usamos Palette la necesitaremos
 

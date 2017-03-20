@@ -43,18 +43,72 @@ fun View.visible() {
 
 * **Picasso**
 
-Antes
+Si usamos la librería, normalmente cargariamos la imagen de esta manera.
 
 ```
 Picasso.with(imageView.context).load(url).into(imageView)
 ```
 
-Despues
+O si queremos agregar alguna transformación sería así.
+
+```
+Picasso.with(context).load("").transform(CropCircleTransformation())into(imageView)
+```
+
+#HSLIDE
+
+* **Picasso**
+
+Pero podemos crear una extensión de ImageView, esta sería loadUrl().
 
 ```
 fun ImageView.loadUrl(url: String) {
     Picasso.with(context).load(url).into(this)
 }
- 
+
 imageView.loadUrl(url)
+```
+
+Agregando transformaciones
+
+```
+fun ImageView.loadUrl(url: String?, transformation: Transformation? = null) {
+    val picasso = Picasso.with(context).load(url)
+    transformation?.let {
+        picasso.transform(when (it) {
+            Transformation.Circle -> CropCircleTransformation()
+        })
+    }
+    picasso.into(this)
+}
+
+imageView.loadUrl(url, Transformation.Circle)
+```
+
+Agregando un callback, si usamos Palette la necesitaremos
+
+```
+fun ImageView.loadUrl(url: String?, transformation: Transformation? = null, cb: ((Bitmap?) -> Unit)? = null) {
+    val picasso = Picasso.with(context).load(url)
+    transformation?.let {
+        picasso.transform(when (it) {
+            Transformation.Circle -> CropCircleTransformation()
+        })
+    }
+    picasso.into(this, object : Callback {
+        override fun onSuccess() {
+            cb?.invoke((drawable as BitmapDrawable).bitmap)
+        }
+
+        override fun onError() {
+            e("No se pudo cargar la imagen")
+        }
+    })
+}
+
+imageView.loadUrl(url) {
+    Palette.from(it).generate {
+        //...
+    }
+}
 ```

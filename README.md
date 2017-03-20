@@ -11,6 +11,10 @@ This is an example of Android using Kotlin, MVP pattern and other libraries.
 ---
 Kotlin version is [1.1.1](https://blog.jetbrains.com/kotlin/2017/03/kotlin-1-1/).
 
+## Slides
+---
+[https://gitpitch.com/kevicsalazar/UpLabs-Kotlin](https://gitpitch.com/kevicsalazar/UpLabs-Kotlin)
+
 Libraries
 ---------
 

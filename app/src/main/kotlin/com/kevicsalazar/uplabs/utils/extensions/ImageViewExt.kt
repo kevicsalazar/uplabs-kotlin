@@ -11,9 +11,9 @@ import android.graphics.drawable.BitmapDrawable
 
 
 /**
- * @author Kevin Salazar
- * @link kevicsalazar.com
+ * Created by Kevin.
  */
+
 fun ImageView.loadUrl(url: String?, transformation: Transformation? = null, cb: ((Bitmap?) -> Unit)? = null) {
     val picasso = Picasso.with(context).load(url)
     transformation?.let {

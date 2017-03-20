@@ -19,9 +19,7 @@ fun FragmentActivity.replaceContentFragment(containerViewId: Int, fragment: Frag
 
 @SuppressLint("NewApi")
 fun AppCompatActivity.setStatusBarColor(color: Int) {
-    if (lollipopOrNewer()) {
-        window.statusBarColor = color
-    }
+    if (lollipopOrNewer()) window.statusBarColor = color
 }
 
 fun AppCompatActivity.showHomeButton() {

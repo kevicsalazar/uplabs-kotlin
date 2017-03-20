@@ -6,6 +6,7 @@ import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.PerActivity
 import com.kevicsalazar.uplabs.domain.model.Post
 import com.kevicsalazar.uplabs.repository.ws.WebServicePosts
+import com.kevicsalazar.uplabs.utils.extensions.enqueue
 import javax.inject.Inject
 
 /**
@@ -16,7 +17,7 @@ class PagePresenter @Inject constructor(val ws1: WebServicePosts, val dh: DataHe
 
     fun getPosts(type: String) {
         view?.showProgress()
-        ws1.getPosts(type, {
+        ws1.getPosts(type).enqueue({
             dh.setPosts(type, it)
             view?.hideProgress()
             getPostsFromLocal(type)

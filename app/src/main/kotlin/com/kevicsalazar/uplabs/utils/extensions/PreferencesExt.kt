@@ -6,8 +6,7 @@ import java.util.*
 
 
 /**
- * @author Kevin Salazar
- * @link kevicsalazar.com
+ * Created by Kevin.
  */
 
 /**

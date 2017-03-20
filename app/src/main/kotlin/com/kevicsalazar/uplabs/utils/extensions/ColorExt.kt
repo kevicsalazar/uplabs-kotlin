@@ -4,8 +4,7 @@ import android.graphics.Color
 
 
 /**
- * @author Kevin Salazar
- * @link kevicsalazar.com
+ * Created by Kevin.
  */
 
 fun MaterialColors(color: String): ColorPalette {

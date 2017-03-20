@@ -1,6 +1,6 @@
 #HSLIDE
 
-<strong>Kevin Salazar Llashag</strong>
+<strong>Kevin Salazar Llashag</strong><br>
 [https://github.com/kevicsalazar](https://github.com/kevicsalazar)
 
 #HSLIDE
@@ -9,10 +9,11 @@
 
 #HSLIDE
 
-<strong>UpLabs App</strong>
-[https://www.uplabs.com](https://www.uplabs.com)
+[<strong>UpLabs App</strong><br>](https://www.uplabs.com)
 
 <img src="./art/screenshot1.png" height="420" />
 <img src="./art/screenshot2.png" height="420" />
 <img src="./art/screenshot3.png" height="420" />
+
+
 

@@ -107,29 +107,53 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/btnShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
-                    android:drawableTop="@drawable/ic_share"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/share" />
+                    android:gravity="center">
 
-                <TextView
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_share" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/share" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/btnLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
-                    android:drawableTop="@drawable/ic_link"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/link" />
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_link" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/link" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/ivAvatar"
-                android:layout_toStartOf="@+id/tvPoints"
+                android:layout_toStartOf="@+id/linearLayout"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -61,16 +61,31 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvPoints"
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                android:drawableTop="@drawable/ic_up"
+                android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                tools:text="28" />
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    app:srcCompat="@drawable/ic_up" />
+
+                <TextView
+                    android:id="@+id/tvPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/link" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 

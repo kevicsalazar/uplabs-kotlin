@@ -144,6 +144,8 @@ imageView.loadCircle(url)
 
 **Intents**
 
+Abrir una url en el navegador
+
 ```
 fun Context.browse(url: String): Boolean {
     try {
@@ -156,14 +158,35 @@ fun Context.browse(url: String): Boolean {
         return false
     }
 }
-
-fun Context.share(text: String, subject: String = ""): Boolean {...}
-fun Context.email(email: String, subject: String = "", text: String = ""): Boolean {...}
 ```
 
 #HSLIDE
 
 **Intents**
+
+Compartir un texto
+
+```
+fun Context.share(text: String, subject: String = ""): Boolean {
+    try {
+        val intent = Intent(android.content.Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject)
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, text)
+        startActivity(Intent.createChooser(intent, null))
+        return true
+    } catch (e: ActivityNotFoundException) {
+        e.printStackTrace()
+        return false
+    }
+}
+```
+
+#HSLIDE
+
+**Intents**
+
+Hacer una llamada
 
 ```
 fun Context.makeCall(number: String): Boolean {
@@ -177,8 +200,6 @@ fun Context.makeCall(number: String): Boolean {
         return false
     }
 }
-
-fun Context.sendSMS(number: String, text: String = ""): Boolean {...}
 ```
 
 #HSLIDE
@@ -191,7 +212,9 @@ fun Context.alert(title: String, message: String,
         = AlertDialog.Builder(this).apply {
             setTitle(title)
             setMessage(message)
-            setPositiveButton(R.string.ok, { dialog, w -> dialog.dismiss() })
+            setPositiveButton(R.string.ok, { 
+                dialog, w -> dialog.dismiss() 
+            })
             init?.let { init() }
 }
 ```
@@ -203,7 +226,40 @@ alert(title, message){...}.show()
 
 #HSLIDE
 
+**Retrofit**
+
+```
+fun <T> Call<T>.enqueue(success: (response: T) -> Unit, 
+                        failure: (t: String) -> Unit) {
+    enqueue(object : Callback<T> {
+        override fun onResponse(call: Call<T>?, 
+                                response: Response<T>) {
+            success(response.body())
+        }
+        override fun onFailure(call: Call<T>?, t: Throwable) {
+            failure(t.message ?: "Unknown Error")
+            t.printStackTrace()
+        }
+    })
+}
+```
+
+```
+ws.getPosts(type).enqueue({ /*Success*/ }, { /*Error*/ })
+```
+
+#HSLIDE
+
+**Gson Extensions**
+
+#HSLIDE
+
+**Preferences Extensions**
+
+#HSLIDE
+
 **Referencias**
 
 * Extension Functions [https://antonioleiva.com/extension-functions-kotlin/](https://antonioleiva.com/extension-functions-kotlin/)
-* Anko [https://github.com/Kotlin/anko](https://github.com/Kotlin/anko)
+* Gson Extensions (Kotson) [https://github.com/SalomonBrys/Kotson](https://github.com/SalomonBrys/Kotson)
+* More Extensions (Anko) [https://github.com/Kotlin/anko](https://github.com/Kotlin/anko)

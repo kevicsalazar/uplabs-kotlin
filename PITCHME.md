@@ -103,7 +103,7 @@ replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" t
 
 **ImageView**
 
-Si usamos Picasso, normalmente lo hariamos de esta forma.
+Cargando una imagen.
 
 ```
 Picasso.with(context).load(url).into(imageView)

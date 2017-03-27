@@ -41,15 +41,13 @@ fun View.visible() {
 
 #HSLIDE
 
-* **Picasso**
+**Picasso**
 
-Si usamos la librería, normalmente cargariamos la imagen de esta manera.
+Si usamos Picasso, normalmente lo hariamos de esta forma.
 
 ```
-Picasso.with(imageView.context).load(url).into(imageView)
+Picasso.with(context).load(url).into(imageView)
 ```
-
-O si queremos agregar alguna transformación sería así.
 
 ```
 Picasso.with(context)
@@ -60,66 +58,25 @@ Picasso.with(context)
 
 #HSLIDE
 
-* **Picasso**
+**Picasso**
 
 Pero podemos crear una extensión de ImageView, esta sería loadUrl().
 
 ```
-fun ImageView.loadUrl(url: String) {
+fun ImageView.load(url: String) {
     Picasso.with(context).load(url).into(this)
 }
 
-imageView.loadUrl(url)
-```
-
-#HSLIDE
-
-* **Picasso**
-
-Agregando transformaciones
-
-```
-fun ImageView.loadUrl(url: String?, transformation: Transformation? = null) {
-    val picasso = Picasso.with(context).load(url)
-    transformation?.let {
-        picasso.transform(when (it) {
-            Transformation.Circle -> CropCircleTransformation()
-        })
-    }
-    picasso.into(this)
+fun ImageView.loadCircle(url: String) {
+    Picasso.with(context)
+        .load(url)
+        .transform(CropCircleTransformation())
+        .into(this)
 }
-
-imageView.loadUrl(url, Transformation.Circle)
 ```
 
-#HSLIDE
-
-* **Picasso**
-
-Agregando un callback, si usamos Palette la necesitaremos
-
 ```
-fun ImageView.loadUrl(url: String?, transformation: Transformation? = null, cb: ((Bitmap?) -> Unit)? = null) {
-    val picasso = Picasso.with(context).load(url)
-    transformation?.let {
-        picasso.transform(when (it) {
-            Transformation.Circle -> CropCircleTransformation()
-        })
-    }
-    picasso.into(this, object : Callback {
-        override fun onSuccess() {
-            cb?.invoke((drawable as BitmapDrawable).bitmap)
-        }
+imageView.load(url)
 
-        override fun onError() {
-            e("No se pudo cargar la imagen")
-        }
-    })
-}
-
-imageView.loadUrl(url) {
-    Palette.from(it).generate {
-        //...
-    }
-}
+imageView.loadCircle(url)
 ```

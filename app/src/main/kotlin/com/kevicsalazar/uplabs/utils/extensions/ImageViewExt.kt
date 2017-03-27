@@ -32,6 +32,14 @@ fun ImageView.loadUrl(url: String?, transformation: Transformation? = null, cb: 
     })
 }
 
+fun ImageView.load(url: String){
+    Picasso.with(context).load(url).into(this)
+}
+
+fun ImageView.loadCircle(url: String){
+    Picasso.with(context).load(url).transform(CropCircleTransformation()).into(this)
+}
+
 enum class Transformation {
 
     Circle

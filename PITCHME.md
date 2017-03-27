@@ -18,15 +18,6 @@
 
 #HSLIDE
 
-###¿Qué librerias se están usando?
-
-* Retrofit by Square [http://square.github.io/retrofit/](http://square.github.io/retrofit/)
-* Picasso by Square [http://square.github.io/picasso/](http://square.github.io/picasso/)
-* Dagger2 by Google [https://google.github.io/dagger/](https://google.github.io/dagger/)
-* Gson by Google [https://github.com/google/gson](https://github.com/google/gson)
-
-#HSLIDE
-
 ###Extension functions
 
 Podemos extender la funcionalidad de las clases.
@@ -60,7 +51,7 @@ Picasso.with(context)
 
 **Picasso**
 
-Creando una extensión de ImageView.
+Creando extensiones de ImageView.
 
 ```
 fun ImageView.load(url: String) {

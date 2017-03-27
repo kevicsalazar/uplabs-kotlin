@@ -28,11 +28,9 @@ fun View.visible() {
 }
 ```
 
-<!-- * Anko [https://github.com/Kotlin/anko](https://github.com/Kotlin/anko) -->
-
 #HSLIDE
 
-**ContextExt**
+**Context Extensions**
 
 ```
 fun Context.colorRes(colorResId: Int): Int {
@@ -46,7 +44,7 @@ fun Context.colorStateListRes(colorResId: Int): ColorStateList {
 
 #HSLIDE
 
-**ColorExt**
+**Color Extensions**
 
 ```
 typealias MaterialColor = Int
@@ -69,7 +67,7 @@ toolbar.setBackgroundColor(color)
 
 #HSLIDE
 
-**ActivityExt**
+**Activity Extensions**
 
 ```
 fun FragmentActivity.replaceContentFragment(containerViewId: Int, 
@@ -88,7 +86,7 @@ fun AppCompatActivity.setStatusBarColor(color: Int) {
 
 #HSLIDE
 
-**FragmentExt**
+**Fragment Extensions**
 
 ```
 fun <T : Fragment> T.withArguments(vararg params: Pair<String, Any>): T {
@@ -120,7 +118,7 @@ Picasso.with(context)
 
 #HSLIDE
 
-**ImageViewExt**
+**ImageView Extensions**
 
 Creando extensiones de ImageView.
 

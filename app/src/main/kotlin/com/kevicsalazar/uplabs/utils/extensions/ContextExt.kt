@@ -1,23 +1,11 @@
 package com.kevicsalazar.uplabs.utils.extensions
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.os.Bundle
-import android.os.Parcelable
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.startActivity
-import android.support.v7.app.AppCompatActivity
-import android.view.View
-import com.kevicsalazar.uplabs.presentation.views.MainActivity
-import com.kevicsalazar.uplabs.presentation.views.PostActivity
-import java.io.Serializable
 
 /**
  * Created by Kevin.

@@ -69,8 +69,8 @@ class MainActivity : BaseActivity() {
         val anim = ValueAnimator.ofObject(ArgbEvaluator(), currentColor, colorRes(colorResId))
         anim.duration = 250
         anim.addUpdateListener {
-            val color = it.animatedValue as Int
-            setStatusBarColor(MaterialColors(color).C700)
+            val color = it.animatedValue as MaterialColor
+            setStatusBarColor(color.palette().C700)
             toolbar.setBackgroundColor(color)
         }
         anim.start()

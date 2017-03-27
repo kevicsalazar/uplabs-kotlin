@@ -7,34 +7,27 @@ import android.graphics.Color
  * Created by Kevin.
  */
 
-fun MaterialColors(color: String): ColorPalette {
-    return MaterialColors(color.substring(1).toLong(16))
-}
+typealias MaterialColor = Int
 
-fun MaterialColors(color: Int): ColorPalette {
-    return MaterialColors(color.toLong() and 0xFFFFFF)
-}
+fun MaterialColor.palette() = ColorPalette(
+        shadeColor(0.9),
+        shadeColor(0.7),
+        shadeColor(0.5),
+        shadeColor(0.333),
+        shadeColor(0.166),
+        shadeColor(0.0),
+        shadeColor(-0.125),
+        shadeColor(-0.25),
+        shadeColor(-0.375),
+        shadeColor(-0.5),
+        shadeColor(0.7),
+        shadeColor(0.5),
+        shadeColor(0.166),
+        shadeColor(-0.25)
+)
 
-fun MaterialColors(f: Long): ColorPalette {
-    return ColorPalette(
-            shadeColor(f, 0.9),
-            shadeColor(f, 0.7),
-            shadeColor(f, 0.5),
-            shadeColor(f, 0.333),
-            shadeColor(f, 0.166),
-            shadeColor(f, 0.0),
-            shadeColor(f, -0.125),
-            shadeColor(f, -0.25),
-            shadeColor(f, -0.375),
-            shadeColor(f, -0.5),
-            shadeColor(f, 0.7),
-            shadeColor(f, 0.5),
-            shadeColor(f, 0.166),
-            shadeColor(f, -0.25)
-    )
-}
-
-fun shadeColor(f: Long, percent: Double): Int {
+fun MaterialColor.shadeColor(percent: Double): Int {
+    val f = toLong() and 0xFFFFFF
     val t = (if (percent < 0) 0 else 255).toDouble()
     val p = if (percent < 0) percent * -1 else percent
     val R = f shr 16

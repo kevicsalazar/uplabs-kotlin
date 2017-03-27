@@ -62,7 +62,9 @@ class PageFragment : BaseFragment(), PagePresenter.View {
     }
 
     override fun showMessage(title: String, message: String) {
-        alert(title, message).show()
+        alert(title, message){
+
+        }.show()
     }
 
 }

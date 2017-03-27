@@ -33,11 +33,6 @@ inline fun <reified T : Activity> AppCompatActivity.startActivity(params: List<P
     ActivityCompat.startActivity(this, createIntent(this, T::class.java, params.toTypedArray()), options.toBundle())
 }
 
-fun <T : Fragment> T.withArguments(vararg params: Pair<String, Any>): T {
-    arguments = bundleOf(*params)
-    return this
-}
-
 fun bundleOf(vararg params: Pair<String, Any?>): Bundle {
     val b = Bundle()
     params.forEach {
@@ -129,14 +124,14 @@ fun Context.email(email: String, subject: String = "", text: String = ""): Boole
         return true
     }
     return false
-
 }
 
 fun Fragment.makeCall(number: String): Boolean = activity.makeCall(number)
 
 fun Context.makeCall(number: String): Boolean {
     try {
-        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$number"))
+        val intent = Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:$number")
         startActivity(intent)
         return true
     } catch (e: Exception) {

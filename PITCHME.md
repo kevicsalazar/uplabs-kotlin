@@ -60,7 +60,7 @@ Picasso.with(context)
 
 **Picasso**
 
-Pero podemos crear una extensión de ImageView, esta sería loadUrl().
+Creando una extensión de ImageView.
 
 ```
 fun ImageView.load(url: String) {

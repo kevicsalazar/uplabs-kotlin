@@ -160,6 +160,10 @@ fun Context.browse(url: String): Boolean {
 }
 ```
 
+```
+browse("https://www.google.com.pe/")
+```
+
 #HSLIDE
 
 **Intents**
@@ -182,6 +186,10 @@ fun Context.share(text: String, subject: String = ""): Boolean {
 }
 ```
 
+```
+share("Hola a todos!!!")
+```
+
 #HSLIDE
 
 **Intents**
@@ -200,6 +208,10 @@ fun Context.makeCall(number: String): Boolean {
         return false
     }
 }
+```
+
+```
+makeCall("987654321")
 ```
 
 #HSLIDE
@@ -252,9 +264,77 @@ ws.getPosts(type).enqueue({ /*Success*/ }, { /*Error*/ })
 
 **Gson Extensions**
 
+* JsonObject
+
+```
+val obj: JsonObject = jsonObject(
+    "name" to "kotson",
+    "creation" to Date().getTime(),
+    "files" to 4
+)
+```
+
+#HSLIDE
+
+**Gson Extensions**
+
+* JsonArray
+
+```
+val arr: JsonArray = jsonArray("one", "two", 42, 21.5)
+```
+
 #HSLIDE
 
 **Preferences Extensions**
+
+```
+fun SharedPreferences.put(key: String, value: Any) {
+    when (value) {
+        ...
+        is String     -> edit().putString(key, value).apply()
+        is Date       -> edit().putLong(key, value.time).apply()
+        is JsonObject -> edit().putString(key, value.toString()).apply()
+        is JsonArray  -> edit().putString(key, value.toString()).apply()
+        else          -> edit().putString(key, Gson().toJson(value)).apply()
+    }
+}
+```
+
+```
+pref.put("name", "Kevin Salazar")
+```
+
+#HSLIDE
+
+**Preferences Extensions**
+
+```
+fun SharedPreferences.string(key: String, 
+    default: String? = null): String? = getString(key, default)
+```
+
+```
+pref.string("name")
+```
+
+#HSLIDE
+
+**Logs**
+
+```
+fun e(tag: String, message: String) {
+    Log.e(tag, message)
+}
+fun Any.e(message: String) {
+    Log.e(this.javaClass.name, message)
+}
+```
+
+```
+e("Error", "Algo está mal!!!")
+e("Algo está mal!!!")
+```
 
 #HSLIDE
 
@@ -262,4 +342,5 @@ ws.getPosts(type).enqueue({ /*Success*/ }, { /*Error*/ })
 
 * Extension Functions [https://antonioleiva.com/extension-functions-kotlin/](https://antonioleiva.com/extension-functions-kotlin/)
 * Gson Extensions (Kotson) [https://github.com/SalomonBrys/Kotson](https://github.com/SalomonBrys/Kotson)
+* SharedPreferences [https://github.com/kevicsalazar/SharedPreferences](https://github.com/kevicsalazar/SharedPreferences)
 * More Extensions (Anko) [https://github.com/Kotlin/anko](https://github.com/Kotlin/anko)

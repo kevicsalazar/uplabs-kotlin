@@ -11,8 +11,8 @@ import javax.inject.Inject
  */
 class PostsListUseCase @Inject constructor(val rep: PostsRepository) {
 
-    fun getPostList(type: String): Observable<List<Post>> {
-        return rep.getPostsList(type)
+    fun getPostList(type: String, force: Boolean): Observable<List<Post>> {
+        return rep.getPostsList(type, force)
     }
 
 }

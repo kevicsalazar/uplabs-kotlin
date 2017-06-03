@@ -33,7 +33,7 @@ class PageFragment : BaseFragment(), PagePresenter.View {
 
         mPresenter.getPosts(type)
         swipeRefresh.setOnRefreshListener {
-            mPresenter.getPosts(type)
+            mPresenter.getPosts(type, true)
         }
 
     }

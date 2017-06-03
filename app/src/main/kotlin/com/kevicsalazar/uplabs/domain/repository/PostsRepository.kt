@@ -9,6 +9,8 @@ import io.reactivex.Observable
  */
 interface PostsRepository {
 
-    fun getPostsList(type: String): Observable<List<Post>>
+    fun getPostsList(type: String, force: Boolean = false): Observable<List<Post>>
+
+    fun getPostDetail(type: String, postId: String): Observable<Post>
 
 }

@@ -12,8 +12,7 @@ import javax.inject.Inject
 class PostDetailUseCase @Inject constructor(val rep: PostsRepository) {
 
     fun getPostDetail(type: String, postId: String): Observable<Post> {
-        return rep.getPostsList(type)
-                .map { it.find { it.id == postId } }
+        return rep.getPostDetail(type, postId)
     }
 
 }

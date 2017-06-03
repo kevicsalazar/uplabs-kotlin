@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
@@ -22,10 +23,6 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-}
-
-kapt {
-    generateStubs = true
 }
 
 dependencies {

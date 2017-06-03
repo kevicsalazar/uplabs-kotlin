@@ -12,9 +12,9 @@ import javax.inject.Inject
  */
 class PagePresenter @Inject constructor(val view: View, val useCase: PostsListUseCase) : BasePresenter {
 
-    fun getPosts(type: String) {
+    fun getPosts(type: String, force: Boolean = false) {
         view.showProgress()
-        useCase.getPostList(type)
+        useCase.getPostList(type, force)
                 .subscribe({
                     it.forEach { view.addPostToAdapter(it) }
                     view.hideProgress()

@@ -4,7 +4,7 @@ import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.kevicsalazar.uplabs.domain.model.Post
+import com.kevicsalazar.uplabs.data.model.Post
 import android.view.LayoutInflater
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.views.PostActivity

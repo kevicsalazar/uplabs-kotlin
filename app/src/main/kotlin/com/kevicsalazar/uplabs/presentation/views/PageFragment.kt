@@ -6,9 +6,8 @@ import android.view.View
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseFragment
 import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.ActivityComponent
 import com.kevicsalazar.uplabs.presentation.adapters.PostRecyclerAdapter
-import com.kevicsalazar.uplabs.domain.model.Post
+import com.kevicsalazar.uplabs.data.model.Post
 import com.kevicsalazar.uplabs.presentation.presenters.PagePresenter
 import com.kevicsalazar.uplabs.utils.extensions.alert
 import kotlinx.android.synthetic.main.fragment_page.*
@@ -41,9 +40,7 @@ class PageFragment : BaseFragment(), PagePresenter.View {
 
     override val layout: Int get() = R.layout.fragment_page
 
-    override val presenter: BasePresenter<*>? get() = mPresenter.with(this)
-
-    override fun setupComponent(component: ActivityComponent) = component.inject(this)
+    override val presenter: BasePresenter? get() = mPresenter
 
     override fun clearAdapter() {
         postAdapter?.clear()
@@ -62,9 +59,7 @@ class PageFragment : BaseFragment(), PagePresenter.View {
     }
 
     override fun showMessage(title: String, message: String) {
-        alert(title, message){
-
-        }.show()
+        alert(title, message) {}.show()
     }
 
 }

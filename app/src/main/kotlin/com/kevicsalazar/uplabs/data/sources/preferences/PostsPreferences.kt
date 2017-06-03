@@ -1,23 +1,18 @@
-package com.kevicsalazar.uplabs.domain
+package com.kevicsalazar.uplabs.data.sources.preferences
 
 import android.content.SharedPreferences
-import com.google.gson.JsonArray
-import com.kevicsalazar.uplabs.PerApp
-import com.kevicsalazar.uplabs.domain.model.Post
+import com.kevicsalazar.uplabs.data.model.Post
 import com.kevicsalazar.uplabs.utils.extensions.any
-import com.kevicsalazar.uplabs.utils.extensions.array
-import com.kevicsalazar.uplabs.utils.extensions.json
 import com.kevicsalazar.uplabs.utils.extensions.put
 import javax.inject.Inject
 
 /**
- * Created by Kevin.
+ * @author Kevin Salazar
+ * @link kevicsalazar.com
  */
+class PostsPreferences @Inject constructor(val pref: SharedPreferences) {
 
-@PerApp
-class DataHelper @Inject constructor(val pref: SharedPreferences) {
-
-    fun setPosts(type: String, posts: JsonArray) {
+    fun setPosts(type: String, posts: List<Post>) {
         pref.put(type, posts)
     }
 

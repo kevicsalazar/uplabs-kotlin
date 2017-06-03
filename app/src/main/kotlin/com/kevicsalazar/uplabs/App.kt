@@ -1,18 +1,17 @@
 package com.kevicsalazar.uplabs
 
-import android.app.Application
+
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
 /**
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
-open class App : Application() {
+open class App : DaggerApplication() {
 
-    val appComponent: AppComponent by lazy { AppComponent.Initializer.init(this) }
-
-    override fun onCreate() {
-        super.onCreate()
-        appComponent.inject(this)
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().create(this)
     }
 
 }

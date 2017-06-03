@@ -1,8 +1,6 @@
 package com.kevicsalazar.uplabs
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 
@@ -11,10 +9,12 @@ import dagger.Provides
  * @link kevicsalazar.com
  */
 @Module
-class AppModule(private val app: App) {
+class AppModule {
 
-    @Provides @PerApp fun provideContext(): Context = app
+    /**
+     * App Context
+     */
 
-    @Provides @PerApp fun provideSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app)
+    @Provides fun provideContext(app: App): Context = app
 
 }

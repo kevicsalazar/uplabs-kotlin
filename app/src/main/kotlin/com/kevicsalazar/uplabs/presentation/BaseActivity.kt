@@ -1,16 +1,13 @@
 package com.kevicsalazar.uplabs.presentation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.view.WindowManager
-import com.kevicsalazar.uplabs.presentation.ActivityComponent
+import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
-
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : DaggerAppCompatActivity() {
 
     /**
      * The onCreate base will set the view specified in [layout] and will
@@ -18,9 +15,7 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupComponent(ActivityComponent.Initializer.init(this))
         setContentView(layout)
-        presenter
     }
 
     override fun onResume() {
@@ -46,20 +41,6 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * @return The presenter attached to the activity. This must extends from [BasePresenter]
      */
-    protected abstract val presenter: BasePresenter<*>?
-
-    /**
-     * This method will setup the injector and will commit the dependencies injections.
-     */
-    protected abstract fun setupComponent(component: ActivityComponent)
-
-
-    protected fun setTranslucentStatusBar() {
-        window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-    }
-
-    protected fun setBackgroundColor(resIdColor: Int) {
-        window.setBackgroundDrawableResource(resIdColor)
-    }
+    protected abstract val presenter: BasePresenter?
 
 }

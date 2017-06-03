@@ -1,37 +1,27 @@
 package com.kevicsalazar.uplabs.presentation.presenters
 
 
-import com.kevicsalazar.uplabs.domain.DataHelper
 import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.PerActivity
-import com.kevicsalazar.uplabs.domain.model.Post
-import com.kevicsalazar.uplabs.repository.ws.WebServicePosts
-import com.kevicsalazar.uplabs.utils.extensions.enqueue
+import com.kevicsalazar.uplabs.data.model.Post
+import com.kevicsalazar.uplabs.domain.usecases.PostsListUseCase
+import com.kevicsalazar.uplabs.presentation.BaseView
 import javax.inject.Inject
 
 /**
  * Created by Kevin.
  */
-@PerActivity
-class PagePresenter @Inject constructor(val ws1: WebServicePosts, val dh: DataHelper) : BasePresenter<PagePresenter.View>() {
+class PagePresenter @Inject constructor(val view: View, val useCase: PostsListUseCase) : BasePresenter {
 
     fun getPosts(type: String) {
-        view?.showProgress()
-        ws1.getPosts(type).enqueue({
-            dh.setPosts(type, it)
-            view?.hideProgress()
-            getPostsFromLocal(type)
-        }, {
-            view?.hideProgress()
-            view?.showMessage("Error", it)
-        })
-    }
-
-    fun getPostsFromLocal(type: String) {
-        view?.clearAdapter()
-        dh.getPosts(type)?.forEach {
-            view?.addPostToAdapter(it)
-        }
+        view.showProgress()
+        useCase.getPostList(type)
+                .subscribe({
+                    it.forEach { view.addPostToAdapter(it) }
+                    view.hideProgress()
+                }, {
+                    view.showMessage("Error", it.message())
+                    view.hideProgress()
+                })
     }
 
     override fun onResume() {
@@ -43,7 +33,7 @@ class PagePresenter @Inject constructor(val ws1: WebServicePosts, val dh: DataHe
     }
 
     override fun onDestroy() {
-        view = null
+
     }
 
     interface View : BaseView {

@@ -1,13 +1,13 @@
-package com.kevicsalazar.uplabs.repository
+package com.kevicsalazar.uplabs.data.sources
 
 import com.kevicsalazar.uplabs.BuildConfig
-import com.kevicsalazar.uplabs.PerApp
-import com.kevicsalazar.uplabs.repository.ws.WebServicePosts
+import com.kevicsalazar.uplabs.data.sources.cloud.PostsRestService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
@@ -17,9 +17,9 @@ import javax.inject.Named
  * @link kevicsalazar.com
  */
 @Module
-class WebServiceModule {
+class CloudModule {
 
-    @Provides @PerApp fun provideOkHttpClientBuilder(): OkHttpClient.Builder {
+    @Provides fun provideOkHttpClientBuilder(): OkHttpClient.Builder {
         val builder = OkHttpClient().newBuilder()
         builder.readTimeout(15, TimeUnit.SECONDS)
         builder.connectTimeout(5, TimeUnit.SECONDS)
@@ -31,19 +31,21 @@ class WebServiceModule {
         return builder
     }
 
-    @Provides @PerApp fun provideOkHttpClient(builder: OkHttpClient.Builder) = builder.addNetworkInterceptor { chain ->
+    @Provides fun provideOkHttpClient(builder: OkHttpClient.Builder) = builder.addNetworkInterceptor { chain ->
         chain.proceed(chain.request().newBuilder()
                 .addHeader("Accept-Charset", "utf-8")
                 .addHeader("Accept", "application/json")
                 .build())
     }.build()!!
 
-    @Provides @PerApp @Named("uplabs") fun provideUplabsRetrofit(client: OkHttpClient) = Retrofit.Builder()
+    @Provides fun provideUplabsRetrofit(client: OkHttpClient) = Retrofit.Builder()
             .baseUrl("https://www.uplabs.com/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
             .build()!!
 
-    @Provides @PerApp fun provideWebServicePosts(@Named("uplabs") retrofit: Retrofit) = retrofit.create(WebServicePosts.Service::class.java)!!
+    @Provides fun providePostsRestService(retrofit: Retrofit) = retrofit.create(PostsRestService.Service::class.java)!!
+
 
 }

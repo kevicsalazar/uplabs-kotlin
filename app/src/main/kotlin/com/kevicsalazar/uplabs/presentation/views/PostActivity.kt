@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.support.v7.graphics.Palette
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
-import com.kevicsalazar.uplabs.domain.model.Post
-import com.kevicsalazar.uplabs.presentation.ActivityComponent
+import com.kevicsalazar.uplabs.data.model.Post
 import com.kevicsalazar.uplabs.presentation.BaseActivity
 import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.presenters.PostPresenter
@@ -33,9 +32,7 @@ class PostActivity : BaseActivity(), PostPresenter.View {
 
     override val layout: Int get() = R.layout.activity_post
 
-    override val presenter: BasePresenter<*>? get() = mPresenter.with(this)
-
-    override fun setupComponent(component: ActivityComponent) = component.inject(this)
+    override val presenter: BasePresenter? get() = mPresenter
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
         android.R.id.home -> consume { onBackPressed() }

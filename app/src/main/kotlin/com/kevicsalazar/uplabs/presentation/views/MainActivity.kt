@@ -9,11 +9,14 @@ import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseActivity
 import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.ActivityComponent
+import com.kevicsalazar.uplabs.presentation.presenters.MainPresenter
 import com.kevicsalazar.uplabs.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), MainPresenter.View {
+
+    @Inject lateinit var mPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +34,7 @@ class MainActivity : BaseActivity() {
 
     override val layout: Int get() = R.layout.activity_main
 
-    override val presenter: BasePresenter<*>? get() = null
-
-    override fun setupComponent(component: ActivityComponent) = component.inject(this)
+    override val presenter: BasePresenter? get() = mPresenter
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -45,17 +46,17 @@ class MainActivity : BaseActivity() {
         else                -> super.onOptionsItemSelected(item)
     }
 
-    fun showMaterialUpFragment() {
+    override fun showMaterialUpFragment() {
         setupView(R.drawable.bg_material_tab, R.color.material)
         replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "material"))
     }
 
-    fun showIOSUPFragment() {
+    override fun showIOSUPFragment() {
         setupView(R.drawable.bg_ios_tab, R.color.ios)
         replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "ios"))
     }
 
-    fun showSiteUpFragment() {
+    override fun showSiteUpFragment() {
         setupView(R.drawable.bg_site_tab, R.color.site)
         replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "site"))
     }

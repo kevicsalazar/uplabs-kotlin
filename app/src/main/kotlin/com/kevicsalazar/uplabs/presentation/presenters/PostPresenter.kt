@@ -1,24 +1,27 @@
 package com.kevicsalazar.uplabs.presentation.presenters
 
 
-import com.kevicsalazar.uplabs.domain.DataHelper
 import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.PerActivity
-import com.kevicsalazar.uplabs.domain.model.Post
+import com.kevicsalazar.uplabs.data.model.Post
+import com.kevicsalazar.uplabs.domain.usecases.PostDetailUseCase
+import com.kevicsalazar.uplabs.presentation.BaseView
 import javax.inject.Inject
 
 /**
  * Created by Kevin.
  */
-@PerActivity
-class PostPresenter @Inject constructor(val dh: DataHelper) : BasePresenter<PostPresenter.View>() {
+class PostPresenter @Inject constructor(val view: View, val useCase: PostDetailUseCase) : BasePresenter {
 
     fun getPost(type: String, id: String) {
-        dh.getPost(type, id)?.let {
-            view?.setupPostImage(it)
-            view?.showPostInfo(it)
-            view?.setupButtons(it)
-        }
+        useCase.getPostDetail(type, id)
+                .subscribe({
+                    view.setupPostImage(it)
+                    view.showPostInfo(it)
+                    view.setupButtons(it)
+                }, {
+                    view.showMessage("Error", it.message())
+                    view.hideProgress()
+                })
     }
 
     override fun onResume() {
@@ -30,7 +33,7 @@ class PostPresenter @Inject constructor(val dh: DataHelper) : BasePresenter<Post
     }
 
     override fun onDestroy() {
-        view = null
+
     }
 
     interface View : BaseView {

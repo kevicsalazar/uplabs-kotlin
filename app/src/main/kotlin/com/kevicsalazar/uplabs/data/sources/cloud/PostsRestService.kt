@@ -4,7 +4,7 @@ import com.kevicsalazar.uplabs.data.model.Post
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import javax.inject.Inject
@@ -24,7 +24,7 @@ class PostsRestService @Inject constructor(val service: Service) {
 
     interface Service {
 
-        @GET("{path}")
+        @POST("{path}")
         fun request(@Path(value = "path", encoded = true) path: String, @Query("page") page: String): Observable<List<Post>>
 
     }

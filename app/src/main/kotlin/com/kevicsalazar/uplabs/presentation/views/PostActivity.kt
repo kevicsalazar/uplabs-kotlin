@@ -49,7 +49,7 @@ class PostActivity : BaseActivity(), PostPresenter.View {
 
     override fun showPostInfo(post: Post) {
         tvTitle.text = post.name
-        tvSubtitle.text = post.maker?.fullName ?: post.makerName
+        tvSubtitle.text = post.submitter?.fullName ?: post.makerName
         tvDescription.text = post.description?.fromHtml()
     }
 

@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
@@ -21,15 +22,12 @@ class MainActivity : BaseActivity(), MainPresenter.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
-        showMaterialUpFragment()
+
+        mPresenter.prepareToShow(R.id.action_materialup)
         bottomNavigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.action_materialup -> consume { showMaterialUpFragment() }
-                R.id.action_iosup      -> consume { showIOSUPFragment() }
-                R.id.action_siteup     -> consume { showSiteUpFragment() }
-                else                   -> false
-            }
+            mPresenter.prepareToShow(it.itemId)
         }
+
     }
 
     override val layout: Int get() = R.layout.activity_main
@@ -46,26 +44,16 @@ class MainActivity : BaseActivity(), MainPresenter.View {
         else                -> super.onOptionsItemSelected(item)
     }
 
-    override fun showMaterialUpFragment() {
-        setupView(R.drawable.bg_material_tab, R.color.material)
-        replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "material"))
+    override fun showFragmentView(fragment: Fragment) {
+        replaceContentFragment(R.id.layoutContent, fragment)
     }
 
-    override fun showIOSUPFragment() {
-        setupView(R.drawable.bg_ios_tab, R.color.ios)
-        replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "ios"))
-    }
-
-    override fun showSiteUpFragment() {
-        setupView(R.drawable.bg_site_tab, R.color.site)
-        replaceContentFragment(R.id.layoutContent, PageFragment().withArguments("type" to "site"))
-    }
-
-    fun setupView(drawableResId: Int, colorResId: Int) {
-
+    override fun setupColor(drawableResId: Int) {
         bottomNavigation.itemIconTintList = colorStateListRes(drawableResId)
         bottomNavigation.itemTextColor = colorStateListRes(drawableResId)
+    }
 
+    override fun startColorTransition(colorResId: Int) {
         val currentColor = (toolbar.background as ColorDrawable).color
         val anim = ValueAnimator.ofObject(ArgbEvaluator(), currentColor, colorRes(colorResId))
         anim.duration = 250

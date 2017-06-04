@@ -16,6 +16,7 @@ class PagePresenter @Inject constructor(val view: View, val useCase: PostsListUs
         view.showProgress()
         useCase.getPostList(type, force)
                 .subscribe({
+                    view.clearAdapter()
                     it.forEach { view.addPostToAdapter(it) }
                     view.hideProgress()
                 }, {

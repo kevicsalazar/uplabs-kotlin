@@ -15,11 +15,13 @@ import javax.inject.Inject
  */
 class PostsPreferences @Inject constructor(val pref: SharedPreferences) {
 
-    var lastUpdated: Date
-        get() = Date(pref.long("lastUpdated"))
-        set(value) {
-            pref.put("lastUpdated", value)
-        }
+    fun setLastUpdated(type: String) {
+        pref.put("$type.lastUpdated", Date())
+    }
+
+    fun getLastUpdated(type: String): Date {
+        return Date(pref.long("$type.lastUpdated"))
+    }
 
     fun setPosts(type: String, posts: List<Post>): Observable<List<Post>> {
         return Observable.create {

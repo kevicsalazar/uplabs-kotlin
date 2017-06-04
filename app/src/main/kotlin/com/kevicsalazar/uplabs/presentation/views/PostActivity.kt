@@ -40,7 +40,7 @@ class PostActivity : BaseActivity(), PostPresenter.View {
     }
 
     override fun setupPostImage(post: Post) {
-        ivPost.loadUrl(post.previewUrl) {
+        ivPost.load(post.previewUrl) {
             Palette.from(it).generate {
                 applyColor(it.vibrantSwatch?.rgb ?: post.colorHex.toColor().palette().C700)
             }

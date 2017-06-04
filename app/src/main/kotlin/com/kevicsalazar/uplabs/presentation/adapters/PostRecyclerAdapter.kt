@@ -8,12 +8,9 @@ import com.kevicsalazar.uplabs.data.model.Post
 import android.view.LayoutInflater
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.views.PostActivity
-import com.kevicsalazar.uplabs.utils.extensions.Transformation
-import com.kevicsalazar.uplabs.utils.extensions.loadUrl
 import kotlinx.android.synthetic.main.item_post.view.*
 import android.support.v7.app.AppCompatActivity
-import com.kevicsalazar.uplabs.utils.extensions.e
-import com.kevicsalazar.uplabs.utils.extensions.startActivity
+import com.kevicsalazar.uplabs.utils.extensions.*
 
 
 /**
@@ -32,9 +29,9 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
         with(holder.itemView) {
             val post = posts[position]
             tvPostName.text = post.name
-            ivPreview.loadUrl(post.previewUrl)
+            ivPreview.load(post.previewUrl)
             tvMakerName.text = "by " + (post.submitter?.fullName ?: post.makerName ?: "")
-            ivAvatar.loadUrl(post.submitter?.avatarUrl, Transformation.Circle)
+            ivAvatar.loadCircle(post.submitter?.avatarUrl)
             tvPoints.text = post.points.toString()
             setOnClickListener {
                 act as AppCompatActivity

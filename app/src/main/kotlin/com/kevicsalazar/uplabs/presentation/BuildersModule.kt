@@ -12,13 +12,13 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class BuildersModule {
 
-    @ContributesAndroidInjector(modules = arrayOf(BindingModule::class))
+    @ContributesAndroidInjector
     abstract fun contributeMainActivityInjector(): MainActivity
 
-    @ContributesAndroidInjector(modules = arrayOf(BindingModule::class))
+    @ContributesAndroidInjector
     abstract fun contributePageFragmentInjector(): PageFragment
 
-    @ContributesAndroidInjector(modules = arrayOf(BindingModule::class))
+    @ContributesAndroidInjector
     abstract fun contributePostActivityInjector(): PostActivity
 
 }

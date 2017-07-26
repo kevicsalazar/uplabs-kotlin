@@ -30,7 +30,7 @@ class MainPresenter @Inject constructor(val view: View) : BasePresenter {
                     view.startColorTransition(R.color.ios)
                 }
                 R.id.action_siteup     -> {
-                    view.showFragmentView(PageFragment().withArguments("type" to "site"))
+                    view.showFragmentView(PageFragment().withArguments("type" to "web"))
                     view.setupColor(R.drawable.bg_site_tab)
                     view.startColorTransition(R.color.site)
                 }

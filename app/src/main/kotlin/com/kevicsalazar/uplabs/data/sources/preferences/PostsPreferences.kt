@@ -36,12 +36,12 @@ class PostsPreferences @Inject constructor(val pref: SharedPreferences) {
 
     fun getPosts(type: String): Observable<List<Post>> {
         return Observable.create {
-            it.onNext(pref.any<List<Post>>(type))
+            it.onNext(pref.any<List<Post>>(type) ?: listOf())
         }
     }
 
     fun getPost(type: String, postId: String): Observable<Post> {
-        return getPosts(type).map { it.find { it.id == postId } }
+        return getPosts(type).map { it.find { it.id == postId }!! }
     }
 
 }

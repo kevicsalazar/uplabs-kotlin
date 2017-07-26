@@ -13,11 +13,11 @@ This is an example of Android using Kotlin, MVP pattern and other libraries.
 
 ## Kotlin
 ---
- * Kotlin [1.1.2-3] - http://kotlinlang.org
+ * Kotlin [1.1.3-2] - http://kotlinlang.org
  
 ## Libraries
 ---
- * Dagger2 [2.11-rc2] - http://google.github.io/dagger
+ * Dagger2 [2.11] - http://google.github.io/dagger
  * Retrofit [2.3.0] - http://square.github.io/retrofit
  * Gson [2.8.0] - https://github.com/google/gson
  * Picasso [2.5.2] - http://square.github.io/picasso

@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.data.sources.preferences
+package com.kevicsalazar.uplabs.data.sources.local
 
 import android.content.SharedPreferences
 import com.kevicsalazar.uplabs.data.model.Post

@@ -6,7 +6,7 @@ import android.view.View
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseFragment
 import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.adapters.PostRecyclerAdapter
+import com.kevicsalazar.uplabs.presentation.views.adapters.PostRecyclerAdapter
 import com.kevicsalazar.uplabs.data.model.Post
 import com.kevicsalazar.uplabs.presentation.presenters.PagePresenter
 import com.kevicsalazar.uplabs.utils.extensions.alert

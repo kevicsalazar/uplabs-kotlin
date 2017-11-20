@@ -1,16 +1,16 @@
 package com.kevicsalazar.uplabs.presentation.presenters
 
 
-import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.data.model.Post
-import com.kevicsalazar.uplabs.domain.usecases.PostDetailUseCase
+import com.kevicsalazar.uplabs.data.repository.PostsDataRepository
+import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.BaseView
 import javax.inject.Inject
 
 /**
  * Created by Kevin.
  */
-class PostPresenter @Inject constructor(val view: View, val useCase: PostDetailUseCase) : BasePresenter {
+class PostPresenter @Inject constructor(val view: View, val useCase: PostsDataRepository) : BasePresenter {
 
     fun getPost(type: String, id: String) {
         useCase.getPostDetail(type, id)

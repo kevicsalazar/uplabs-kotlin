@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.presentation.adapters
+package com.kevicsalazar.uplabs.presentation.views.adapters
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView

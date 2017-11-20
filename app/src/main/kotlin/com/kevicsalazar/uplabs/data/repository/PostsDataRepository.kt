@@ -1,9 +1,8 @@
 package com.kevicsalazar.uplabs.data.repository
 
 import com.kevicsalazar.uplabs.data.model.Post
-import com.kevicsalazar.uplabs.data.sources.cloud.PostsRestService
-import com.kevicsalazar.uplabs.data.sources.preferences.PostsPreferences
-import com.kevicsalazar.uplabs.domain.repository.PostsRepository
+import com.kevicsalazar.uplabs.data.sources.local.PostsPreferences
+import com.kevicsalazar.uplabs.data.sources.remote.PostsRestService
 import com.kevicsalazar.uplabs.utils.extensions.hoursBeforeNow
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -12,23 +11,20 @@ import javax.inject.Inject
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
-class PostsDataRepository @Inject constructor(val rs: PostsRestService, val pref: PostsPreferences) : PostsRepository {
+class PostsDataRepository @Inject constructor(val rs: PostsRestService, val pref: PostsPreferences) {
 
-    override fun getPostsList(type: String, force: Boolean): Observable<List<Post>> {
-        if (force || pref.getLastUpdated(type).hoursBeforeNow() > 6) {
-            return rs.getPosts(type)
+    fun getPostsList(type: String, force: Boolean): Observable<List<Post>> {
+        return if (force || pref.getLastUpdated(type).hoursBeforeNow() > 6) {
+            rs.getPosts(type)
                     .flatMap {
                         pref.setLastUpdated(type)
                         pref.setPosts(type, it)
                     }
         } else {
-            return pref.getPosts(type)
+            pref.getPosts(type)
         }
     }
 
-    override fun getPostDetail(type: String, postId: String): Observable<Post> {
-        return pref.getPost(type, postId)
-
-    }
+    fun getPostDetail(type: String, postId: String) = pref.getPost(type, postId)
 
 }

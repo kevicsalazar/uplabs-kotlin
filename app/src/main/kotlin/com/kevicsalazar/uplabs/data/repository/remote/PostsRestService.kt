@@ -1,4 +1,4 @@
-package com.kevicsalazar.uplabs.data.sources.remote
+package com.kevicsalazar.uplabs.data.repository.remote
 
 import com.kevicsalazar.uplabs.data.model.Post
 import io.reactivex.Observable

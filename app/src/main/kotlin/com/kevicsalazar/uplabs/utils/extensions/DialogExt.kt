@@ -12,7 +12,7 @@ import com.kevicsalazar.uplabs.R
 fun Context.alert(title: String, message: String, init: (AlertDialog.Builder.() -> Unit)? = null) = AlertDialog.Builder(this).apply {
     setTitle(title)
     setMessage(message)
-    setPositiveButton(R.string.ok, { dialog, w -> dialog.dismiss() })
+    setPositiveButton(R.string.ok, { dialog, _ -> dialog.dismiss() })
     init?.let { init() }
 }
 

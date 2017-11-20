@@ -1,23 +1,17 @@
 package com.kevicsalazar.uplabs.presentation.views
 
 import android.os.Bundle
-import android.support.v7.graphics.Palette
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
-import com.kevicsalazar.uplabs.data.model.Post
 import com.kevicsalazar.uplabs.presentation.BaseActivity
-import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.presenters.PostPresenter
-import com.kevicsalazar.uplabs.utils.extensions.*
+import com.kevicsalazar.uplabs.utils.extensions.consume
+import com.kevicsalazar.uplabs.utils.extensions.showHomeButton
 import kotlinx.android.synthetic.main.activity_post.*
-import javax.inject.Inject
 
 /**
  * Created by Kevin.
  */
-class PostActivity : BaseActivity(), PostPresenter.View {
-
-    @Inject lateinit var mPresenter: PostPresenter
+class PostActivity : BaseActivity<PostViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,20 +20,20 @@ class PostActivity : BaseActivity(), PostPresenter.View {
 
         val type = intent.getStringExtra("type")
         val id = intent.getStringExtra("id")
-        mPresenter.getPost(type, id)
+        //mPresenter.getPost(type, id)
 
     }
 
-    override val layout: Int get() = R.layout.activity_post
+    override fun getLayout() = R.layout.activity_post
 
-    override val presenter: BasePresenter? get() = mPresenter
+    override fun getViewModelClass() = PostViewModel::class
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
         android.R.id.home -> consume { onBackPressed() }
         else              -> super.onOptionsItemSelected(item)
     }
 
-    override fun setupPostImage(post: Post) {
+    /*override fun setupPostImage(post: Post) {
         ivPost.load(post.previewUrl) {
             Palette.from(it).generate {
                 applyColor(it.vibrantSwatch?.rgb ?: post.colorHex.toColor().palette().C700)
@@ -79,6 +73,6 @@ class PostActivity : BaseActivity(), PostPresenter.View {
         collapsingToolbar.setContentScrimColor(color)
         collapsingToolbar.setStatusBarScrimColor(color)
         toolbarWrapper.setBackgroundColor(color)
-    }
+    }*/
 
 }

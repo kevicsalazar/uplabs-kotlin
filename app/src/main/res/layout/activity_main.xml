@@ -22,7 +22,7 @@
                 android:layout_height="28dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_uplaps_logo" />
+                android:src="@drawable/ic_uplaps" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -35,24 +35,12 @@
         android:layout_marginBottom="?attr/actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <LinearLayout
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@drawable/shadow" />
-
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            app:menu="@menu/menu_bottom" />
-
-    </LinearLayout>
+        android:background="@color/white"
+        app:menu="@menu/menu_bottom" />
 
 </android.support.design.widget.CoordinatorLayout>

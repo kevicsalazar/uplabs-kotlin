@@ -5,9 +5,9 @@
     <color name="colorPrimaryDark">#48B6C4</color>
     <color name="colorAccent">#D3D5D6</color>
 
-    <color name="material">#2856B6</color>
-    <color name="ios">#9C37CB</color>
-    <color name="site">#AA2E85</color>
+    <color name="android">#39903D</color>
+    <color name="ios">#4C35A6</color>
+    <color name="web">#951247</color>
 
     <!--RED-->
     <color name="red_50">#FFEBEE</color>

@@ -1,46 +1,30 @@
 package com.kevicsalazar.uplabs.presentation
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
+import kotlin.reflect.KClass
 
 /**
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity<T : ViewModel> : DaggerAppCompatActivity() {
 
-    /**
-     * The onCreate base will set the view specified in [layout] and will
-     * inject dependencies and views.
-     */
+    @Inject lateinit var viewModelFactory: ViewModelFactory
+
+    protected lateinit var viewModel: T
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout)
+        setContentView(getLayout())
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass().java)
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter?.onResume()
-    }
+    protected abstract fun getLayout(): Int
 
-    override fun onPause() {
-        super.onPause()
-        presenter?.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter?.onDestroy()
-    }
-
-    /**
-     * @return The layout that's gonna be the activity view.
-     */
-    protected abstract val layout: Int
-
-    /**
-     * @return The presenter attached to the activity. This must extends from [BasePresenter]
-     */
-    protected abstract val presenter: BasePresenter?
+    protected abstract fun getViewModelClass(): KClass<T>
 
 }

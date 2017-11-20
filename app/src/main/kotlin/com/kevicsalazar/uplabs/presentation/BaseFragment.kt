@@ -1,47 +1,36 @@
 package com.kevicsalazar.uplabs.presentation
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
+import kotlin.reflect.KClass
 
 /**
  * Created by Kevin Salazar
  */
-abstract class BaseFragment : DaggerFragment() {
+abstract class BaseFragment<T : ViewModel> : DaggerFragment() {
 
-    /**
-     * The onCreateView base will set the view specified in [layout].
-     */
+    @Inject lateinit var viewModelFactory: ViewModelFactory
+
+    protected lateinit var viewModel: T
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
-        return inflater!!.inflate(layout, container, false)
+        return inflater!!.inflate(getLayout(), container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter?.onResume()
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass().java)
     }
 
-    override fun onPause() {
-        super.onPause()
-        presenter?.onPause()
-    }
+    protected abstract fun getLayout(): Int
 
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter?.onDestroy()
-    }
-
-    /**
-     * Specify the layout of the fragment to be inflated in the [BaseFragment.onCreateView]
-     */
-    protected abstract val layout: Int
-
-    /**
-     * @return The presenter attached to the fragment. This must extends from [BasePresenter]
-     */
-    protected abstract val presenter: BasePresenter?
+    protected abstract fun getViewModelClass(): KClass<T>
 
 }

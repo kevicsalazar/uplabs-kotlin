@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_materialup"
-        android:icon="@drawable/ic_material"
-        android:title="@string/materialup"
+        android:id="@+id/action_android"
+        android:icon="@drawable/ic_android"
+        android:title="@string/android"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_iosup"
+        android:id="@+id/action_ios"
         android:icon="@drawable/ic_ios"
-        android:title="@string/iosup"
+        android:title="@string/ios"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_siteup"
-        android:icon="@drawable/ic_site"
-        android:title="@string/siteup"
+        android:id="@+id/action_web"
+        android:icon="@drawable/ic_web"
+        android:title="@string/web"
         app:showAsAction="never" />
 </menu>

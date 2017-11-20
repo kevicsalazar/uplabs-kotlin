@@ -1,14 +1,13 @@
 package com.kevicsalazar.uplabs.presentation
 
 
-import com.kevicsalazar.uplabs.presentation.presenters.MainPresenter
-import com.kevicsalazar.uplabs.presentation.presenters.PagePresenter
-import com.kevicsalazar.uplabs.presentation.presenters.PostPresenter
-import com.kevicsalazar.uplabs.presentation.views.MainActivity
-import com.kevicsalazar.uplabs.presentation.views.PageFragment
-import com.kevicsalazar.uplabs.presentation.views.PostActivity
+import android.arch.lifecycle.ViewModel
+import com.kevicsalazar.uplabs.presentation.views.MainViewModel
+import com.kevicsalazar.uplabs.presentation.views.PageViewModel
+import com.kevicsalazar.uplabs.presentation.views.PostViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
 
 /**
@@ -18,10 +17,22 @@ import dagger.Module
 @Module
 abstract class BindingModule {
 
-    @Binds abstract fun provideMainView(activity: MainActivity): MainPresenter.View
+    @Binds
+    @IntoMap
+    @PerActivity
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
 
-    @Binds abstract fun providePageView(fragment: PageFragment): PagePresenter.View
+    @Binds
+    @IntoMap
+    @PerActivity
+    @ViewModelKey(PageViewModel::class)
+    abstract fun bindPageViewModel(viewModel: PageViewModel): ViewModel
 
-    @Binds abstract fun providePostView(activity: PostActivity): PostPresenter.View
+    @Binds
+    @IntoMap
+    @PerActivity
+    @ViewModelKey(PostViewModel::class)
+    abstract fun bindPostViewModel(viewModel: PostViewModel): ViewModel
 
 }

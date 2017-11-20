@@ -9,30 +9,25 @@ import android.view.Menu
 import android.view.MenuItem
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseActivity
-import com.kevicsalazar.uplabs.presentation.BasePresenter
-import com.kevicsalazar.uplabs.presentation.presenters.MainPresenter
 import com.kevicsalazar.uplabs.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainPresenter.View {
-
-    @Inject lateinit var mPresenter: MainPresenter
+class MainActivity : BaseActivity<MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
 
-        mPresenter.prepareToShow(R.id.action_materialup)
+        prepareToShow(R.id.action_android)
         bottomNavigation.setOnNavigationItemSelectedListener {
-            mPresenter.prepareToShow(it.itemId)
+            prepareToShow(it.itemId)
         }
 
     }
 
-    override val layout: Int get() = R.layout.activity_main
+    override fun getLayout() = R.layout.activity_main
 
-    override val presenter: BasePresenter? get() = mPresenter
+    override fun getViewModelClass() = MainViewModel::class
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -44,16 +39,37 @@ class MainActivity : BaseActivity(), MainPresenter.View {
         else                -> super.onOptionsItemSelected(item)
     }
 
-    override fun showFragmentView(fragment: Fragment) {
+    private fun prepareToShow(itemId: Int): Boolean {
+        when (itemId) {
+            R.id.action_android -> {
+                showFragmentView(PageFragment().withArguments("type" to "android"))
+                setupColor(R.drawable.bg_android_tab)
+                startColorTransition(R.color.android)
+            }
+            R.id.action_ios     -> {
+                showFragmentView(PageFragment().withArguments("type" to "ios"))
+                setupColor(R.drawable.bg_ios_tab)
+                startColorTransition(R.color.ios)
+            }
+            R.id.action_web     -> {
+                showFragmentView(PageFragment().withArguments("type" to "web"))
+                setupColor(R.drawable.bg_web_tab)
+                startColorTransition(R.color.web)
+            }
+        }
+        return true
+    }
+
+    private fun showFragmentView(fragment: Fragment) {
         replaceContentFragment(R.id.layoutContent, fragment)
     }
 
-    override fun setupColor(drawableResId: Int) {
+    private fun setupColor(drawableResId: Int) {
         bottomNavigation.itemIconTintList = colorStateListRes(drawableResId)
         bottomNavigation.itemTextColor = colorStateListRes(drawableResId)
     }
 
-    override fun startColorTransition(colorResId: Int) {
+    private fun startColorTransition(colorResId: Int) {
         val currentColor = (toolbar.background as ColorDrawable).color
         val anim = ValueAnimator.ofObject(ArgbEvaluator(), currentColor, colorRes(colorResId))
         anim.duration = 250

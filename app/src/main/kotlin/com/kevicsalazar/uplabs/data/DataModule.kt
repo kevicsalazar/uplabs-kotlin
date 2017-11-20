@@ -3,7 +3,7 @@ package com.kevicsalazar.uplabs.data
 import android.preference.PreferenceManager
 import com.kevicsalazar.uplabs.App
 import com.kevicsalazar.uplabs.BuildConfig
-import com.kevicsalazar.uplabs.data.sources.remote.PostsRestService
+import com.kevicsalazar.uplabs.data.repository.remote.PostsRestService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

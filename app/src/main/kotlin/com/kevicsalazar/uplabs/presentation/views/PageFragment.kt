@@ -1,24 +1,18 @@
 package com.kevicsalazar.uplabs.presentation.views
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseFragment
-import com.kevicsalazar.uplabs.presentation.BasePresenter
 import com.kevicsalazar.uplabs.presentation.views.adapters.PostRecyclerAdapter
-import com.kevicsalazar.uplabs.data.model.Post
-import com.kevicsalazar.uplabs.presentation.presenters.PagePresenter
-import com.kevicsalazar.uplabs.utils.extensions.alert
 import kotlinx.android.synthetic.main.fragment_page.*
-import javax.inject.Inject
 
 /**
  * Created by Kevin.
  */
-class PageFragment : BaseFragment(), PagePresenter.View {
-
-    @Inject lateinit var mPresenter: PagePresenter
+class PageFragment : BaseFragment<PageViewModel>() {
 
     var postAdapter: PostRecyclerAdapter? = null
 
@@ -31,18 +25,23 @@ class PageFragment : BaseFragment(), PagePresenter.View {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = postAdapter
 
-        mPresenter.getPosts(type)
+        viewModel.loadPostList()?.observe(this, Observer {
+            postAdapter?.clear()
+            it?.forEach { postAdapter?.add(it) }
+        })
+
+        viewModel.getPosts(type)
         swipeRefresh.setOnRefreshListener {
-            mPresenter.getPosts(type, true)
+            viewModel.getPosts(type, true)
         }
 
     }
 
-    override val layout: Int get() = R.layout.fragment_page
+    override fun getLayout() = R.layout.fragment_page
 
-    override val presenter: BasePresenter? get() = mPresenter
+    override fun getViewModelClass() = PageViewModel::class
 
-    override fun clearAdapter() {
+    /*override fun clearAdapter() {
         postAdapter?.clear()
     }
 
@@ -60,6 +59,6 @@ class PageFragment : BaseFragment(), PagePresenter.View {
 
     override fun showMessage(title: String, message: String) {
         alert(title, message) {}.show()
-    }
+    }*/
 
 }

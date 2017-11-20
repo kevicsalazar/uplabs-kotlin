@@ -20,7 +20,7 @@ class MainPresenter @Inject constructor(val view: View) : BasePresenter {
         if (idSelected != itemId) {
             when (itemId) {
                 R.id.action_materialup -> {
-                    view.showFragmentView(PageFragment().withArguments("type" to "material"))
+                    view.showFragmentView(PageFragment().withArguments("type" to "android"))
                     view.setupColor(R.drawable.bg_material_tab)
                     view.startColorTransition(R.color.material)
                 }

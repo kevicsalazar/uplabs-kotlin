@@ -25,14 +25,13 @@ class PageFragment : BaseFragment<PageViewModel>() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = postAdapter
 
-        viewModel.loadPostList()?.observe(this, Observer {
+        viewModel.loadPostList(type)?.observe(this, Observer {
             postAdapter?.clear()
             it?.forEach { postAdapter?.add(it) }
         })
 
-        viewModel.getPosts(type)
         swipeRefresh.setOnRefreshListener {
-            viewModel.getPosts(type, true)
+
         }
 
     }

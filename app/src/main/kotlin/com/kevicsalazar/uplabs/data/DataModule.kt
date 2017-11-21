@@ -3,7 +3,7 @@ package com.kevicsalazar.uplabs.data
 import android.preference.PreferenceManager
 import com.kevicsalazar.uplabs.App
 import com.kevicsalazar.uplabs.BuildConfig
-import com.kevicsalazar.uplabs.data.repository.remote.PostsRestService
+import com.kevicsalazar.uplabs.data.repository.remote.RemotePostsDataSource
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -53,6 +53,6 @@ class DataModule {
             .build()!!
 
     @Provides
-    fun providePostsRestService(retrofit: Retrofit) = retrofit.create(PostsRestService.Service::class.java)!!
+    fun providePostsRestService(retrofit: Retrofit) = retrofit.create(RemotePostsDataSource.Service::class.java)!!
 
 }

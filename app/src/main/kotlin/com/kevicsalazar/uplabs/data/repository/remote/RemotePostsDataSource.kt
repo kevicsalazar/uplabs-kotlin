@@ -8,12 +8,14 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author Kevin Salazar
  * @link kevicsalazar.com
  */
-class PostsRestService @Inject constructor(val service: Service) {
+@Singleton
+class RemotePostsDataSource @Inject constructor(val service: Service) {
 
     fun getPosts(type: String): Observable<List<Post>> {
         return service

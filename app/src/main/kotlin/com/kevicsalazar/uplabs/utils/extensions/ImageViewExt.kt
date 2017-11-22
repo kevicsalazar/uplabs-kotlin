@@ -1,13 +1,12 @@
 package com.kevicsalazar.uplabs.utils.extensions
 
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
+import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import android.widget.ImageView
 import com.kevicsalazar.uplabs.utils.CropCircleTransformation
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
-import android.graphics.drawable.BitmapDrawable
 
 
 /**
@@ -22,7 +21,7 @@ fun ImageView.load(url: String?, cb: ((Bitmap?) -> Unit)? = null) {
                 }
 
                 override fun onError() {
-                    e("No se pudo cargar la imagen")
+                    Log.e("Error", "No se pudo cargar la imagen")
                 }
             })
 }
@@ -36,7 +35,7 @@ fun ImageView.loadCircle(url: String?, cb: ((Bitmap?) -> Unit)? = null) {
                 }
 
                 override fun onError() {
-                    e("No se pudo cargar la imagen")
+                    Log.e("Error", "No se pudo cargar la imagen")
                 }
             })
 }

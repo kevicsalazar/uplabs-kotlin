@@ -1,6 +1,7 @@
 package com.kevicsalazar.uplabs.utils.extensions
 
 import android.support.v4.app.Fragment
+import org.jetbrains.anko.bundleOf
 
 /**
  * Created by Kevin.

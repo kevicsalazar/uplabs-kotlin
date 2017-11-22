@@ -3,7 +3,8 @@ package com.kevicsalazar.uplabs.data
 import android.preference.PreferenceManager
 import com.kevicsalazar.uplabs.App
 import com.kevicsalazar.uplabs.BuildConfig
-import com.kevicsalazar.uplabs.data.repository.remote.RemotePostsDataSource
+import com.kevicsalazar.uplabs.data.repository.remote.PostsService
+import com.kevicsalazar.uplabs.data.repository.room.PostsDatabase
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -12,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 /**
  * @author Kevin Salazar
@@ -20,8 +22,22 @@ import java.util.concurrent.TimeUnit
 @Module
 class DataModule {
 
+    // Preferences
+
     @Provides
     fun providePreferences(app: App) = PreferenceManager.getDefaultSharedPreferences(app)!!
+
+    // Room
+
+    @Provides
+    @Singleton
+    fun providePostsDatabase(app: App) = PostsDatabase.buildDatabase(app)
+
+    @Provides
+    @Singleton
+    fun providePostDao(db: PostsDatabase) = db.postDao()
+
+    // WebServices
 
     @Provides
     fun provideOkHttpClientBuilder(): OkHttpClient.Builder {
@@ -53,6 +69,6 @@ class DataModule {
             .build()!!
 
     @Provides
-    fun providePostsRestService(retrofit: Retrofit) = retrofit.create(RemotePostsDataSource.Service::class.java)!!
+    fun providePostsRestService(retrofit: Retrofit) = retrofit.create(PostsService.Service::class.java)!!
 
 }

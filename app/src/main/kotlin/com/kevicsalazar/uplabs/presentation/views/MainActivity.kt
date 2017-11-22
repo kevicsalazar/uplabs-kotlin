@@ -11,6 +11,8 @@ import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseActivity
 import com.kevicsalazar.uplabs.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.browse
+import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity<MainViewModel>() {
 

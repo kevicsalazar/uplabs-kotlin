@@ -31,8 +31,8 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
             val post = posts[position]
             tvPostName.text = post.name
             ivPreview.load(post.previewUrl)
-            tvMakerName.text = String.format("by %s", post.submitter?.fullName ?: post.makerName ?: "")
-            ivAvatar.loadCircle(post.submitter?.avatarUrl)
+            //tvMakerName.text = String.format("by %s", post.submitter?.fullName ?: post.makerName ?: "")
+            //ivAvatar.loadCircle(post.submitter?.avatarUrl)
             tvPoints.text = post.points.toString()
             setOnClickListener {
                 act as AppCompatActivity

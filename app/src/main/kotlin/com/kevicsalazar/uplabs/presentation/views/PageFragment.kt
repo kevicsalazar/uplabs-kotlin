@@ -3,6 +3,7 @@ package com.kevicsalazar.uplabs.presentation.views
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.presentation.BaseFragment
@@ -26,6 +27,7 @@ class PageFragment : BaseFragment<PageViewModel>() {
         recyclerView.adapter = postAdapter
 
         viewModel.loadPostList(type)?.observe(this, Observer {
+            Log.e("New", "New")
             postAdapter?.clear()
             it?.forEach { postAdapter?.add(it) }
         })
@@ -39,25 +41,5 @@ class PageFragment : BaseFragment<PageViewModel>() {
     override fun getLayout() = R.layout.fragment_page
 
     override fun getViewModelClass() = PageViewModel::class
-
-    /*override fun clearAdapter() {
-        postAdapter?.clear()
-    }
-
-    override fun addPostToAdapter(post: Post) {
-        postAdapter?.add(post)
-    }
-
-    override fun showProgress() {
-        swipeRefresh.isRefreshing = true
-    }
-
-    override fun hideProgress() {
-        swipeRefresh.isRefreshing = false
-    }
-
-    override fun showMessage(title: String, message: String) {
-        alert(title, message) {}.show()
-    }*/
 
 }

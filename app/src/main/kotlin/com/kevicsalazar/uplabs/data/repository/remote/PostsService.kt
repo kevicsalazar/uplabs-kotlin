@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * @link kevicsalazar.com
  */
 @Singleton
-class RemotePostsDataSource @Inject constructor(val service: Service) {
+class PostsService @Inject constructor(val service: Service) {
 
     fun getPosts(type: String): Observable<List<Post>> {
         return service

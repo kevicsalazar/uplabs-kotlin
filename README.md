@@ -1,4 +1,4 @@
-# UppLabs App
+# UpLabs App
 Kotlin Sample Project for Android
 
 This is an example of Android using Kotlin, MVP pattern and other libraries.

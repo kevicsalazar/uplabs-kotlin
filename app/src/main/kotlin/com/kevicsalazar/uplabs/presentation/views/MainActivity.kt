@@ -2,6 +2,7 @@ package com.kevicsalazar.uplabs.presentation.views
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.arch.lifecycle.Observer
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
@@ -18,10 +19,14 @@ class MainActivity : BaseActivity<MainViewModel>() {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
 
-        prepareToShow(R.id.action_android)
         bottomNavigation.setOnNavigationItemSelectedListener {
-            prepareToShow(it.itemId)
+            consume { viewModel.changePage(it.itemId) }
         }
+
+        viewModel.loadPage()?.observe(this, pageChanged)
+
+        if (savedInstanceState == null)
+            viewModel.changePage(R.id.action_android)
 
     }
 
@@ -39,13 +44,12 @@ class MainActivity : BaseActivity<MainViewModel>() {
         else                -> super.onOptionsItemSelected(item)
     }
 
-    private fun prepareToShow(itemId: Int): Boolean {
-        when (itemId) {
+    private val pageChanged = Observer<Int> {
+        when (it) {
             R.id.action_android -> setupPageFragment("android", R.drawable.bg_android_tab, R.color.android)
             R.id.action_ios     -> setupPageFragment("ios", R.drawable.bg_ios_tab, R.color.ios)
             R.id.action_web     -> setupPageFragment("web", R.drawable.bg_web_tab, R.color.web)
         }
-        return true
     }
 
     private fun setupPageFragment(platform: String, drawableResId: Int, colorResId: Int) {

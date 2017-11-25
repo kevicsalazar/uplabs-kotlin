@@ -48,8 +48,8 @@ class PostsRepository @Inject constructor(val rs: PostsService, val dao: PostDao
         return mutableLiveData
     }
 
-    private fun refreshPosts(platform: String) {
-        if (shouldFetch(platform)) {
+    fun refreshPosts(platform: String, forced: Boolean = false) {
+        if (shouldFetch(platform) || forced) {
             rs.getPosts(platform)
                     .subscribeOn(Schedulers.io())
                     .subscribe({

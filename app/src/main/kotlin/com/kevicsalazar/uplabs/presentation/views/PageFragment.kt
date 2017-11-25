@@ -3,7 +3,6 @@ package com.kevicsalazar.uplabs.presentation.views
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import com.kevicsalazar.uplabs.R
 import com.kevicsalazar.uplabs.data.model.Post
@@ -27,10 +26,11 @@ class PageFragment : BaseFragment<PageViewModel>() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = postAdapter
 
-        viewModel.loadPosts(platform)?.observe(this, postsChanges)
+        viewModel.platform = platform
+        viewModel.loadPosts()?.observe(this, postsChanges)
 
         swipeRefresh.setOnRefreshListener {
-
+            viewModel.refreshPost()
         }
 
     }
@@ -40,8 +40,8 @@ class PageFragment : BaseFragment<PageViewModel>() {
     override fun getViewModelClass() = PageViewModel::class
 
     private val postsChanges = Observer<List<Post>> {
-        Log.e("NEW", "NEW")
         postAdapter.updateList(it ?: listOf())
+        swipeRefresh.isRefreshing = false
     }
 
 }

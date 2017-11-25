@@ -19,9 +19,12 @@ import kotlinx.android.synthetic.main.item_post.view.*
  * Created by Kevin.
  */
 
-class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
+class PostRecyclerAdapter(val act: Activity, var posts: List<Post> = listOf()) : RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
 
-    private var posts = mutableListOf<Post>()
+    fun updateList(newPosts: List<Post>) {
+        posts = newPosts
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
             ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false))
@@ -31,13 +34,13 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
             val post = posts[position]
             tvPostName.text = post.name
             ivPreview.load(post.previewUrl)
-            //tvMakerName.text = String.format("by %s", post.submitter?.fullName ?: post.makerName ?: "")
-            //ivAvatar.loadCircle(post.submitter?.avatarUrl)
+            tvMakerName.text = String.format("by %s", post.submitter?.fullName ?: post.makerName ?: "")
+            ivAvatar.loadCircle(post.submitter?.avatarUrl)
             tvPoints.text = post.points.toString()
             setOnClickListener {
                 act as AppCompatActivity
                 act.startActivity<PostActivity>(
-                        listOf("type" to type, "id" to post.id),
+                        listOf("id" to post.id),
                         listOf(ivPreview to "preview")
                 )
             }
@@ -45,16 +48,6 @@ class PostRecyclerAdapter(val act: Activity, val type: String) : RecyclerView.Ad
     }
 
     override fun getItemCount() = posts.size
-
-    fun add(post: Post) {
-        this.posts.add(post)
-        notifyItemInserted(posts.size)
-    }
-
-    fun clear() {
-        this.posts.clear()
-        notifyDataSetChanged()
-    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 

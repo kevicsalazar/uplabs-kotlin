@@ -8,13 +8,12 @@ fun now(): Date = Date()
 
 fun today(): Date = Date().truncate()
 
-typealias TimeInterval = Long
-
-val TimeIntervalMinute: TimeInterval = 60
-val TimeIntervalHour: TimeInterval = 3600
-val TimeIntervalDay: TimeInterval = 86400
-val TimeIntervalWeek: TimeInterval = 604800
-val TimeIntervalYear: TimeInterval = 31556926
+enum class TimeInterval(val seconds: Long, val millis: Long) {
+    WEEK(604800, 604800 * 1000),
+    DAY(86400, 86400 * 1000),
+    HOUR(3600, 3600 * 1000),
+    MINUTE(60, 60 * 1000)
+}
 
 val Calendar.year get() = get(Calendar.YEAR)
 val Calendar.month get() = get(Calendar.MONTH)
@@ -83,7 +82,7 @@ fun Date.isSameWeekAsDate(date: Date): Boolean {
         return false
     }
     // Must have a time interval under 1 week. Thanks @aclark
-    return timeIntervalSince(date) < TimeIntervalWeek
+    return timeIntervalSince(date) < TimeInterval.WEEK.seconds
 }
 
 fun Date.isThisWeek(): Boolean = isSameWeekAsDate(now())
@@ -152,21 +151,21 @@ fun Date.truncate(): Date {
 }
 
 fun Date.dateByAddingDays(days: Int): Date {
-    val timeInterval = timeInSeconds + TimeIntervalDay * days
+    val timeInterval = timeInSeconds + TimeInterval.DAY.seconds * days
     return Date(timeInterval * 1000L)
 }
 
 fun Date.dateBySubtractingDays(days: Int): Date = dateByAddingDays(-days)
 
 fun Date.dateByAddingHours(hours: Int): Date {
-    val timeInterval = timeInSeconds + TimeIntervalHour * hours
+    val timeInterval = timeInSeconds + TimeInterval.HOUR.seconds * hours
     return Date(timeInterval * 1000L)
 }
 
 fun Date.dateBySubtractingHours(hours: Int): Date = dateByAddingHours(-hours)
 
 fun Date.dateByAddingMinutes(minutes: Int): Date {
-    val timeInterval = timeInSeconds + TimeIntervalMinute * minutes
+    val timeInterval = timeInSeconds + TimeInterval.MINUTE.seconds * minutes
     return Date(timeInterval * 1000L)
 }
 
@@ -201,32 +200,32 @@ fun Date.secondsBeforeDate(date: Date): Int {
 
 fun Date.minutesAfterDate(date: Date): Int {
     val timeInterval = timeIntervalSince(date)
-    return (timeInterval / TimeIntervalMinute).toInt()
+    return (timeInterval / TimeInterval.MINUTE.seconds).toInt()
 }
 
 fun Date.minutesBeforeDate(date: Date): Int {
     val timeInterval = date.timeIntervalSince(this)
-    return (timeInterval / TimeIntervalMinute).toInt()
+    return (timeInterval / TimeInterval.MINUTE.seconds).toInt()
 }
 
 fun Date.hoursAfterDate(date: Date): Int {
     val timeInterval = timeIntervalSince(date)
-    return (timeInterval / TimeIntervalHour).toInt()
+    return (timeInterval / TimeInterval.HOUR.seconds).toInt()
 }
 
 fun Date.hoursBeforeDate(date: Date): Int {
     val timeInterval = date.timeIntervalSince(this)
-    return (timeInterval / TimeIntervalHour).toInt()
+    return (timeInterval / TimeInterval.HOUR.seconds).toInt()
 }
 
 fun Date.daysAfterDate(date: Date): Int {
     val timeInterval = timeIntervalSince(date)
-    return (timeInterval / TimeIntervalDay).toInt()
+    return (timeInterval / TimeInterval.DAY.seconds).toInt()
 }
 
 fun Date.daysBeforeDate(date: Date): Int {
     val timeInterval = date.timeIntervalSince(this)
-    return (timeInterval / TimeIntervalDay).toInt()
+    return (timeInterval / TimeInterval.DAY.seconds).toInt()
 }
 
 fun Date.changeDate(year: Int, month: Int, dayOfMonth: Int): Date {

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
-            app:aspectRatio="0.75"
+            app:aspectRatio="0.7"
             app:aspectRatioEnabled="true"
             app:dominantMeasurement="width" />
 

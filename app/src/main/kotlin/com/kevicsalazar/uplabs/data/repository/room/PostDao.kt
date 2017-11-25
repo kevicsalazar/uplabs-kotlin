@@ -6,6 +6,7 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.kevicsalazar.uplabs.data.model.Post
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
  * @author Kevin Salazar
@@ -14,16 +15,13 @@ import io.reactivex.Flowable
 @Dao
 interface PostDao {
 
-    @Query("SELECT * FROM Post")
-    fun getPostsList(): Flowable<List<Post>>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserPostList(posts: List<Post>)
+    fun savePosts(posts: List<Post>)
+
+    @Query("SELECT * FROM Post WHERE platform = :platform")
+    fun getPosts(platform: String): Flowable<List<Post>>
 
     @Query("SELECT * FROM Post WHERE id = :id")
-    fun getPostById(id: String): Flowable<Post>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPost(post: Post)
+    fun getPost(id: String): Flowable<Post>
 
 }

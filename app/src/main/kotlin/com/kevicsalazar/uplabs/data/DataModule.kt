@@ -40,7 +40,7 @@ class DataModule {
     // WebServices
 
     @Provides
-    fun provideOkHttpClientBuilder(): OkHttpClient.Builder {
+    fun provideClientBuilder(): OkHttpClient.Builder {
         val builder = OkHttpClient().newBuilder()
         builder.readTimeout(15, TimeUnit.SECONDS)
         builder.connectTimeout(5, TimeUnit.SECONDS)
@@ -53,7 +53,7 @@ class DataModule {
     }
 
     @Provides
-    fun provideOkHttpClient(builder: OkHttpClient.Builder) = builder.addNetworkInterceptor { chain ->
+    fun provideClient(builder: OkHttpClient.Builder) = builder.addNetworkInterceptor { chain ->
         chain.proceed(chain.request().newBuilder()
                 .addHeader("Accept-Charset", "utf-8")
                 .addHeader("Accept", "application/json")
@@ -61,7 +61,7 @@ class DataModule {
     }.build()!!
 
     @Provides
-    fun provideUplabsRetrofit(client: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(client: OkHttpClient) = Retrofit.Builder()
             .baseUrl("https://www.uplabs.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -69,6 +69,6 @@ class DataModule {
             .build()!!
 
     @Provides
-    fun providePostsRestService(retrofit: Retrofit) = retrofit.create(PostsService.Service::class.java)!!
+    fun providePostsService(retrofit: Retrofit) = retrofit.create(PostsService::class.java)!!
 
 }

@@ -10,7 +10,10 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Submitter(
         @PrimaryKey
-        @SerializedName("id") val id: String,
-        @SerializedName("full_name") val fullName: String,
-        @SerializedName("avatar_url") val avatarUrl: String
+        @SerializedName("id")
+        val id: String,
+        @SerializedName("full_name")
+        val fullName: String,
+        @SerializedName("avatar_url")
+        val avatarUrl: String
 )

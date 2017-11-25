@@ -8,7 +8,7 @@ This is an example of Android using Kotlin and Android Architecture Components.
 
 <img src="./art/grafico.jpg" />
 
-## Demo UppLabs
+## Demo UpLabs
 ---
 
 <img src="./art/screenshot1.png" height="420" />

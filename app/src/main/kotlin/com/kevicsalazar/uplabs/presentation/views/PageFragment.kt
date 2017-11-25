@@ -29,11 +29,10 @@ class PageFragment : BaseFragment<PageViewModel>() {
             adapter = postAdapter
         }
 
-        viewModel.platform = platform
-        viewModel.loadPosts()?.observe(this, postsChanges)
+        viewModel.loadPosts(platform)?.observe(this, postsChanges)
 
         swipeRefresh.setOnRefreshListener {
-            viewModel.refreshPost()
+            viewModel.refreshPost(platform)
         }
 
     }

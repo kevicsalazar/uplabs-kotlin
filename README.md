@@ -1,23 +1,33 @@
-# UppLabs App
+# Architecture Components - Kotlin
 Kotlin Sample Project for Android
 
-This is an example of Android using Kotlin, MVP pattern and other libraries.
+This is an example of Android using Kotlin and Android Architecture Components.
+
+## Architecture
+---
+
+<img src="./art/grafico.jpg" />
+
+## Demo UppLabs
+---
 
 <img src="./art/screenshot1.png" height="420" />
 <img src="./art/screenshot2.png" height="420" />
 <img src="./art/screenshot3.png" height="420" />
 
-## Slides
----
-[https://gitpitch.com/kevicsalazar/UpLabs-Kotlin](https://gitpitch.com/kevicsalazar/UpLabs-Kotlin)
-
 ## Kotlin
 ---
- * Kotlin [1.1.3-2] - http://kotlinlang.org
+ * Kotlin [1.1.60] - http://kotlinlang.org
  
 ## Libraries
 ---
- * Dagger2 [2.11] - http://google.github.io/dagger
+ * Dagger2 [2.13] - http://google.github.io/dagger
  * Retrofit [2.3.0] - http://square.github.io/retrofit
- * Gson [2.8.0] - https://github.com/google/gson
- * Picasso [2.5.2] - http://square.github.io/picasso
+ * RxJava2 [2.1.5] - https://github.com/ReactiveX/RxJava
+
+## Resources
+---
+* https://developer.android.com/topic/libraries/architecture/index.html
+* https://android.jlelse.eu/room-store-your-data-c6d49b4d53a3
+* https://medium.com/google-developers/room-rxjava-acb0cd4f3757
+* https://medium.com/google-developers/viewmodels-and-livedata-patterns-antipatterns-21efaef74a54

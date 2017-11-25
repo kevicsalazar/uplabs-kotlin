@@ -16,16 +16,14 @@ class PageViewModel @Inject constructor(val rep: PostsRepository) : ViewModel() 
 
     private var livePostData: LiveData<List<Post>>? = null
 
-    var platform: String = ""
-
-    fun loadPosts(): LiveData<List<Post>>? {
+    fun loadPosts(platform: String): LiveData<List<Post>>? {
         if (livePostData == null) {
             livePostData = rep.getPosts(platform)
         }
         return livePostData
     }
 
-    fun refreshPost() {
+    fun refreshPost(platform: String) {
         rep.refreshPosts(platform, true)
     }
 

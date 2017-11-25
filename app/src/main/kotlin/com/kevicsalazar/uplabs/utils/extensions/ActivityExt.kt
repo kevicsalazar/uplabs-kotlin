@@ -1,6 +1,7 @@
 package com.kevicsalazar.uplabs.utils.extensions
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
@@ -31,6 +32,8 @@ fun AppCompatActivity.setStatusBarColor(color: Int) {
 fun AppCompatActivity.showHomeButton() {
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 }
+
+fun Activity.isPortrait() = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
 inline fun <reified T : Activity> AppCompatActivity.startActivity(params: List<Pair<String, Any>>, elements: List<Pair<View, String>>) {
     val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, *elements.map { android.support.v4.util.Pair(it.first, it.second) }.toTypedArray())

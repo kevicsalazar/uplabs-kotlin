@@ -20,6 +20,7 @@
         </activity>
         <activity
             android:name=".presentation.views.PostActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Translucent" />
     </application>
 

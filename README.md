@@ -3,15 +3,15 @@ Kotlin Sample Project for Android
 
 This is an example of Android using Kotlin and Android Architecture Components.
 
+## UpLabs App Demo
+---
+
+<img src="./art/cover.png" />
+
 ## Architecture
 ---
 
 <img src="./art/grafico.jpg" />
-
-## Demo UpLabs
----
-
-<img src="./art/cover.png" />
 
 ## Kotlin
 ---

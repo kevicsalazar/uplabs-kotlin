@@ -11,7 +11,7 @@ This is an example of Android using Kotlin and Android Architecture Components.
 ## Demo UpLabs
 ---
 
-<img src="./art/cover.png" height="600" />
+<img src="./art/cover.png" />
 
 ## Kotlin
 ---
